@@ -1,1 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Panggung Al-Ambiak Original</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#ffffff',
+                        brandDark: '#f8fafc',
+                        gold: '#d4af37',
+                        danger: '#dc2626',
+                        whatsapp: '#25d366'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS Styles -->
+    <style>
+        :root { --font-main: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--brand-dark); color: #1f2937; overflow-x: hidden; font-family: var(--font-main); scroll-behavior: smooth; }
+        
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .hook-gradient { background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); }
+        
+        /* Animations */
+        @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-pulse-fast { animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .ads-placeholder { border: 2px dashed #cbd5e1; background: #f8fafc; min-height: 100px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        
+        /* Admin Tabs Styling */
+        .admin-tab-btn { display: flex; align-items: center; width: 100%; text-align: left; padding: 14px 20px; font-weight: 700; color: #6b7280; border-bottom: 1px solid #f3f4f6; transition: all 0.2s; font-size: 0.9rem; }
+        .admin-tab-btn:hover { background-color: #f9fafb; color: #1f2937; }
+        .admin-tab-btn.active { background-color: #eff6ff; color: #2563eb; border-left: 4px solid #2563eb; }
+        @media (min-width: 768px) { .admin-tab-btn { border-bottom: none; border-left: 4px solid transparent; } }
+    </style>
 
+    <div id="tracking-scripts"></div>
+</head>
+<body class="antialiased selection:bg-gold selection:text-white">
+
+    <div class="bg-gradient-to-r from-red-600 to-red-800 text-white text-center py-2 px-4 text-xs md:text-sm font-black tracking-widest uppercase shadow-md relative z-50">
+        🔥 PROMOSI HQ: <span id="promo-stock">50</span> KOTAK TERAKHIR SAHAJA HARI INI!
+    </div>
+    
+    <div class="bg-white text-center py-1.5 px-4 text-xs font-bold text-gray-600 border-b border-gray-200 flex justify-center items-center gap-2 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse-fast"></span>
+        <span id="ui-live-viewers">124</span> orang sedang melihat halaman ini
+    </div>
+
+    <header class="pt-10 pb-12 px-4 text-center relative max-w-4xl mx-auto bg-white shadow-sm rounded-b-[40px] border-b border-gray-100">
+        <div class="inline-block bg-yellow-50 border border-yellow-400 text-yellow-700 px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-6 shadow-sm">
+            ⭐ Stok 100% Original HQ (Kotak Hijau)
+        </div>
+        
+        <h1 id="hero-title" class="text-4xl md:text-6xl font-black uppercase leading-tight mb-4 tracking-tight text-gray-900 drop-shadow-sm">
+            Kopi Panggung <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">Al-Ambiak</span>
+        </h1>
+        
+        <!-- Trust Hook (Tak Original Duit Pulang) -->
+        <div class="bg-red-50 border-2 border-red-500 rounded-2xl p-4 my-6 inline-block shadow-md mx-auto max-w-xl animate-pulse">
+            <p class="text-red-700 font-bold text-sm md:text-base">100% Original Kopi Songkok Direct Kilang..</p>
+            <p class="text-red-600 font-black text-lg md:text-xl mt-1">Jangan Risau.. Tak Original? <span class="underline decoration-red-600 decoration-4">Duit Bos.. Kami Pulangkan</span></p>
+        </div>
+
+        <p id="hero-subtitle" class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-medium mb-10">
+            Formulasi Ekstrak Herba Semulajadi Gred Premium Untuk Tenaga, Stamina Dan Kecergasan Maksimum Lelaki Sejati.
+        </p>
+
+        <div class="bg-white border-2 border-gray-100 rounded-3xl p-4 md:p-8 shadow-2xl relative max-w-2xl mx-auto mb-12 hook-gradient">
+            <img id="hero-image" src="image_5.png" alt="Produk Utama" class="w-full h-auto rounded-2xl object-cover shadow-md" onerror="this.src='https://placehold.co/800x600/f8fafc/d4af37?text=GAMBAR+KOPI+SONGKOK';">
+        </div>
+        
+        <button onclick="scrollToProducts()" class="bg-whatsapp hover:bg-green-600 text-white px-10 py-4 rounded-full font-black text-lg shadow-[0_10px_20px_rgba(37,211,102,0.3)] transition-all transform hover:-translate-y-1 uppercase tracking-widest">
+            Lihat Pakej Harga Serta Merta
+        </button>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 my-8" id="adsense-slot-1-container"></div>
+
+    <section class="py-12 px-4 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-black text-center mb-8 uppercase tracking-wide leading-tight text-gray-900" id="ui-pain-headline">Kerja Penat, Stress, Faktor Umur... <br/><span class="text-gold">Prestasi Merudum Teruk?</span></h2>
+        
+        <div id="story-container" class="space-y-6 mb-12">
+            <!-- Dynamic Storytelling Boxes Injected via JS -->
+        </div>
+
+        <h3 class="text-xl font-bold text-center mb-6 text-gray-900">Selalu Alami Masalah Di Bawah?</h3>
+        <div class="space-y-4 mb-12 max-w-2xl mx-auto">
+            <div class="bg-white border border-red-100 p-5 rounded-2xl flex items-center gap-5 hover:border-red-300 shadow-sm transition-colors">
+                <div class="bg-red-50 text-red-500 w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-times"></i></div>
+                <p id="ui-pain-1" class="font-bold text-gray-800">Badan lemau, lesu & tak bermaya lepas balik kerja.</p>
+            </div>
+            <div class="bg-white border border-red-100 p-5 rounded-2xl flex items-center gap-5 hover:border-red-300 shadow-sm transition-colors">
+                <div class="bg-red-50 text-red-500 w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-times"></i></div>
+                <p id="ui-pain-2" class="font-bold text-gray-800">Mengantuk tersengguk-sengguk masa memandu jarak jauh.</p>
+            </div>
+            <div class="bg-white border border-red-100 p-5 rounded-2xl flex items-center gap-5 hover:border-red-300 shadow-sm transition-colors">
+                <div class="bg-red-50 text-red-500 w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-times"></i></div>
+                <p id="ui-pain-3" class="font-bold text-gray-800">Sakit-sakit urat dan lenguh sendi satu badan.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-y border-gray-200 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-gold font-black uppercase tracking-widest text-sm block mb-2">Penyelesaian Anda</span>
+                <h2 class="text-3xl md:text-4xl font-black uppercase text-gray-900">Kenapa Wajib <span class="text-gold">Cuba?</span></h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 text-center hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fas fa-bolt"></i></div>
+                    <h4 class="font-black text-lg mb-2 text-gray-900">Tenaga Ekstra</h4>
+                    <p class="text-gray-600 text-sm">Membantu membekalkan stamina berpanjangan supaya kerja harian tak terganggu.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 text-center hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fas fa-heartbeat"></i></div>
+                    <h4 class="font-black text-lg mb-2 text-gray-900">Lancar Darah</h4>
+                    <p class="text-gray-600 text-sm">Herba semulajadi bertindak membantu menyegarkan otot dan membuang angin.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 text-center hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fas fa-coffee"></i></div>
+                    <h4 class="font-black text-lg mb-2 text-gray-900">Rasa Kopi Sebenar</h4>
+                    <p class="text-gray-600 text-sm">Tidak manis, aroma panggang asli yang membangkitkan selera penggemar kopi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="text-danger font-black uppercase tracking-widest text-sm block mb-2"><i class="fas fa-shield-alt mr-2"></i>Penting! Elak Ditipu</span>
+            <h2 class="text-3xl md:text-4xl font-black uppercase text-gray-900">Cara Kenal Kopi <span class="text-gold">Original</span></h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-[30px] border-t-8 border-green-500 shadow-xl relative overflow-hidden border border-gray-100">
+                <h3 class="text-2xl font-black text-green-600 mb-6 flex items-center"><i class="fas fa-check-circle mr-3"></i> ORIGINAL (KOTAK HIJAU)</h3>
+                <div class="bg-green-50 p-2 rounded-2xl mb-6 border border-green-200">
+                    <img src="image_2.png" class="w-full h-48 object-cover rounded-xl" onerror="this.src='https://placehold.co/400x300/f0fdf4/22c55e?text=SACHET+ORIGINAL';">
+                </div>
+                <ul class="space-y-4 text-gray-700 font-medium">
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-3"></i> Sachet warna HIJAU TERANG.</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-3"></i> Serbuk kopi gelap & padat herba.</li>
+                </ul>
+            </div>
+            <div class="bg-white p-8 rounded-[30px] border-t-8 border-red-500 shadow-xl relative overflow-hidden border border-gray-100">
+                <h3 class="text-2xl font-black text-red-600 mb-6 flex items-center"><i class="fas fa-times-circle mr-3"></i> TIRUAN (SILVER)</h3>
+                <div class="bg-red-50 p-2 rounded-2xl mb-6 border border-red-200">
+                    <img src="image_3.png" class="w-full h-48 object-cover rounded-xl" onerror="this.src='https://placehold.co/400x300/fef2f2/ef4444?text=SACHET+TIRUAN';">
+                </div>
+                <ul class="space-y-4 text-gray-700 font-medium">
+                    <li class="flex items-start"><i class="fas fa-times text-red-500 mt-1 mr-3"></i> Sachet warna SILVER PUCAT.</li>
+                    <li class="flex items-start"><i class="fas fa-times text-red-500 mt-1 mr-3"></i> Serbuk pucat & kurang herba sebenar.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-gray-900 text-white shadow-inner">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="flex flex-col items-center p-6 bg-gray-800 rounded-2xl border border-gray-700 hover:border-green-500 transition-colors">
+                <i class="fas fa-truck text-4xl text-green-400 mb-3"></i>
+                <h3 class="font-bold text-lg">Free Shipping</h3>
+                <p class="text-gray-400 text-sm mt-1">2 Kotak Keatas</p>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-gray-800 rounded-2xl border border-gray-700 hover:border-green-500 transition-colors">
+                <i class="fas fa-box text-4xl text-green-400 mb-3"></i>
+                <h3 class="font-bold text-lg">Fast Shipping</h3>
+                <p class="text-gray-400 text-sm mt-1">Bayar Sebelum 12pm</p>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-gray-800 rounded-2xl border border-gray-700 hover:border-green-500 transition-colors">
+                <i class="fas fa-leaf text-4xl text-green-400 mb-3"></i>
+                <h3 class="font-bold text-lg">Bahan Organik</h3>
+                <p class="text-gray-400 text-sm mt-1">100% Guarantee</p>
+            </div>
+            <div class="flex flex-col items-center p-6 bg-gray-800 rounded-2xl border border-gray-700 hover:border-green-500 transition-colors">
+                <i class="fas fa-shield-alt text-4xl text-green-400 mb-3"></i>
+                <h3 class="font-bold text-lg">Original Produk</h3>
+                <p class="text-gray-400 text-sm mt-1">100% Dari Kilang</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-4 my-4" id="adsense-slot-2-container"></div>
+
+    <section id="products-section" class="py-20 px-4 bg-gray-50 border-y border-gray-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-gold font-black uppercase tracking-widest text-sm block mb-2"><i class="fas fa-shopping-bag mr-2"></i>Buat Pilihan Anda</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase text-gray-900">Pakej Harga Promosi</h2>
+                <p class="text-gray-500 mt-4 text-sm"><i class="fas fa-fire text-danger mr-1"></i> Lebih <span id="ui-total-buyers" class="font-bold text-gray-900">15,420</span> pelanggan telah berjaya. Anda bila lagi?</p>
+            </div>
+            <div id="product-grid" class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Dynamic Products Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-12 uppercase tracking-wide text-gray-900">Ribuan Suami Telah <span class="text-gold">Berjaya!</span></h2>
+            <div id="testimoni-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic Testimonials Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 pt-16 pb-8 text-center relative mt-10">
+        <h2 class="text-3xl font-black mb-8 text-white">Tunggu Apa Lagi Bos?</h2>
+        <button onclick="scrollToProducts()" class="w-full sm:w-auto mx-auto max-w-md bg-gradient-to-b from-[#25d366] to-[#128c7e] hover:from-[#128c7e] hover:to-[#075e54] text-white px-10 py-5 rounded-full font-black text-xl shadow-[0_15px_30px_rgba(37,211,102,0.4)] transition-all transform hover:scale-105 active:scale-95 animate-pulse uppercase tracking-widest border-b-4 border-[#075e54] flex items-center justify-center">
+            Tempah Sekarang <i class="fas fa-arrow-up ml-3 text-2xl"></i>
+        </button>
+
+        <div class="mt-16 pt-8 border-t border-gray-800 max-w-4xl mx-auto px-4 relative">
+            <p class="text-gray-400 text-sm mb-2">Kami mementingkan kualiti produk dan kepuasan pelanggan. Pastikan yang original.</p>
+            <p class="text-gray-500 text-xs font-bold py-2 inline-block cursor-pointer" ondblclick="document.getElementById('admin-modal').classList.remove('hidden')">
+                &copy; 2026 Pembekal Sah Kopi Panggung Al-Ambiak Malaysia. Hak Cipta Terpelihara.
+            </p>
+            <!-- Ikon Mangga Rahsia Untuk Buka Admin (Sekali Klik Sahaja) -->
+            <button onclick="document.getElementById('admin-modal').classList.remove('hidden')" class="absolute bottom-0 right-0 p-4 opacity-50 hover:opacity-100 transition-opacity text-gray-500" title="Admin Login">
+                <i class="fas fa-lock text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- SEO Hidden Text (Screen Reader Only) - Tak mengganggu UI -->
+        <div class="sr-only">
+            Kopi Songkok Al Ambiak Original Direct Kilang, Kopi Panggung Al Ambiak, Cara kenal kopi songkok original dan tiruan, Ubat kuat tenaga batin lelaki tahan lama, kopi herba tradisional, khasiat tongkat ali dan maca, kopi tahan ngantuk memandu.
+        </div>
+    </footer>
+
+    <button onclick="toggleCart()" class="fixed bottom-6 right-6 bg-gold text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl z-40 hover:scale-110 transition-transform">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-danger text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 shadow-md">0</span>
+    </button>
+
+    <div id="live-popup" class="fixed bottom-6 left-6 z-40 bg-white text-gray-900 px-4 py-3 rounded-2xl shadow-xl flex items-center max-w-xs border border-gray-200 transition-all duration-500 transform translate-y-32 opacity-0">
+        <div class="w-10 h-10 bg-gold rounded-full flex items-center justify-center font-bold text-white mr-3 shadow-inner shrink-0 text-xl" id="popup-initial">A</div>
+        <div>
+            <p class="text-xs font-bold text-gray-500"><span id="popup-name" class="text-gray-800">Ahmad</span> telah membeli</p>
+            <p class="text-sm font-black uppercase text-green-600" id="popup-product">1 KOTAK (20 Sachet)</p>
+            <p class="text-[10px] text-gray-400 font-bold mt-0.5" id="popup-time">10 minit lalu</p>
+        </div>
+    </div>
+
+    <div id="cart-sidebar" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div id="cart-content" class="absolute inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col border-l border-gray-200">
+            <div class="p-6 flex items-center justify-between border-b border-gray-100">
+                <h2 class="text-2xl font-black flex items-center text-gray-900"><i class="fas fa-shopping-basket mr-3 text-gold"></i> Troli Anda</h2>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-900 bg-gray-100 p-2 rounded-full hover:bg-red-50 hover:text-red-500 transition-colors"><i class="fas fa-times text-lg"></i></button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"></div>
+            <div id="cart-footer" class="p-6 border-t border-gray-200 bg-white" style="display:none;">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="font-medium text-gray-500">Subtotal</span>
+                    <span class="text-2xl font-black text-green-600">RM <span id="cart-total-display">0.00</span></span>
+                </div>
+                <button onclick="proceedToCheckout()" class="w-full bg-whatsapp hover:bg-green-600 text-white py-4 rounded-xl font-black text-lg shadow-lg uppercase tracking-widest transition-colors flex justify-center items-center">
+                    Checkout Sekarang <i class="fas fa-arrow-right ml-3"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md hidden overflow-y-auto">
+        <div class="min-h-screen px-4 py-8 flex justify-center items-center">
+            <div class="bg-white border border-gray-200 w-full max-w-5xl rounded-[30px] shadow-2xl overflow-hidden flex flex-col lg:flex-row relative">
+                <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-500 bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-red-500 hover:text-white transition-colors shadow-sm"><i class="fas fa-times"></i></button>
+
+                <!-- Left Form -->
+                <div class="p-6 md:p-10 lg:w-3/5 border-b lg:border-b-0 lg:border-r border-gray-200">
+                    <button onclick="closeCheckout(); toggleCart(true);" class="text-gray-500 hover:text-gold mb-6 text-sm font-bold flex items-center"><i class="fas fa-arrow-left mr-2"></i> Kembali ke Troli</button>
+                    <h2 class="text-2xl md:text-3xl font-black mb-6 uppercase flex items-center text-gray-900"><i class="fas fa-truck mr-3 text-gold"></i> Maklumat Pos</h2>
+                    
+                    <form id="checkout-form" class="space-y-4 mb-8">
+                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Nama Penuh</label><input type="text" id="cust-name" required class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-gray-900 focus:border-gold outline-none"></div>
+                        <div><label class="block text-sm font-bold text-gray-700 mb-1">No. Telefon (WhatsApp)</label><input type="tel" id="cust-phone" required class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-gray-900 focus:border-gold outline-none" placeholder="0123456789"></div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Zon Penghantaran (Negeri)</label>
+                            <select id="cust-state" required onchange="updateCheckoutUI()" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-gray-900 focus:border-gold outline-none font-bold">
+                                <option value="" disabled selected>Pilih Negeri Anda...</option>
+                                <option value="Semenanjung">Semenanjung Malaysia</option>
+                                <option value="SabahSarawak">Sabah, Sarawak & Labuan</option>
+                                <option value="LuarNegara">Luar Negara (International)</option>
+                            </select>
+                        </div>
+                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Alamat Penuh Rumah</label><textarea id="cust-address" required rows="3" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-gray-900 focus:border-gold outline-none" placeholder="No Rumah, Jalan, Taman, Poskod"></textarea></div>
+                    </form>
+
+                    <h2 class="text-2xl font-black mb-4 uppercase flex items-center text-gray-900"><i class="fas fa-wallet mr-3 text-gold"></i> Cara Bayaran</h2>
+                    <div class="space-y-3">
+                        <label class="flex items-center p-4 border border-gray-200 bg-gray-50 rounded-xl cursor-pointer hover:border-gold transition-colors" onclick="togglePaymentView('qr')">
+                            <input type="radio" name="payment_method" value="qr" checked class="mr-4 accent-gold w-5 h-5">
+                            <span class="font-bold flex-1 text-lg text-gray-800">QR Code Pay (DuitNow)</span><i class="fas fa-qrcode text-gold text-2xl"></i>
+                        </label>
+                        <label class="flex items-center p-4 border border-gray-200 bg-gray-50 rounded-xl cursor-pointer hover:border-gold transition-colors" onclick="togglePaymentView('bank')">
+                            <input type="radio" name="payment_method" value="bank" class="mr-4 accent-gold w-5 h-5">
+                            <span class="font-bold flex-1 text-lg text-gray-800">Manual Bank Transfer</span><i class="fas fa-university text-blue-500 text-2xl"></i>
+                        </label>
+                        <label class="flex items-center p-4 border border-gray-200 bg-gray-50 rounded-xl cursor-pointer hover:border-gold transition-colors" onclick="togglePaymentView('fpx')">
+                            <input type="radio" name="payment_method" value="fpx" class="mr-4 accent-gold w-5 h-5">
+                            <span class="font-bold flex-1 text-lg text-gray-800">FPX / Kad Debit / E-Wallet</span><i class="fas fa-credit-card text-green-500 text-2xl"></i>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Right Summary -->
+                <div class="p-6 md:p-10 lg:w-2/5 bg-gray-50 border-l border-gray-200 flex flex-col">
+                    <h2 class="text-xl font-black mb-4 border-b border-gray-200 pb-4 text-gray-900">Ringkasan Pesanan</h2>
+                    <div id="checkout-items" class="space-y-3 mb-4 max-h-40 overflow-y-auto hide-scroll text-sm text-gray-700"></div>
+                    <div class="border-y border-gray-200 py-4 space-y-2 mb-6">
+                        <div class="flex justify-between text-gray-600"><span>Subtotal</span><span id="chk-subtotal" class="font-bold">RM 0.00</span></div>
+                        <div class="flex justify-between text-gray-600"><span>Postage <span id="chk-region" class="text-xs text-gold ml-1"></span></span><span id="chk-postage" class="font-bold">Sila Pilih Negeri</span></div>
+                        <div class="flex justify-between text-2xl font-black pt-2 mt-2"><span>Jumlah</span><span class="text-green-600" id="chk-total">RM 0.00</span></div>
+                    </div>
+
+                    <!-- Payment Views -->
+                    <div id="view-qr" class="mb-6 text-center bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+                        <p class="text-sm font-bold text-gold mb-3">Sila Imbas Kod Di Bawah</p>
+                        <img id="checkout-qr-img" src="" class="w-48 h-48 object-contain mx-auto bg-white p-2 rounded-xl mb-4 border" onerror="this.src='https://placehold.co/200?text=TIADA+QR';">
+                        <p class="text-xs text-gray-500">Sokong DuitNow, MAE, TNG E-Wallet & aplikasi bank lain.</p>
+                    </div>
+
+                    <div id="view-bank" class="hidden mb-6 p-5 bg-white border border-gray-200 rounded-2xl shadow-sm">
+                        <p class="text-sm font-bold text-gray-700 mb-2">Maklumat Akaun Bank Admin:</p>
+                        <div class="bg-gray-100 p-4 rounded-xl border border-gray-200 font-mono text-sm mb-4 text-center">
+                            <p class="text-gray-500">Bank: <span id="bank-name-display" class="text-gray-900 font-bold">Maybank</span></p>
+                            <p class="text-blue-600 font-black text-2xl tracking-wider my-1" id="bank-acc-display">1234567890</p>
+                            <p class="text-gray-500">Nama: <span id="bank-holder-display" class="text-gray-900 uppercase font-bold">Syarikat Al Ambiak</span></p>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-2 text-center">Pautan pantas login portal bank:</p>
+                        <div class="grid grid-cols-3 gap-2 mb-2">
+                            <a href="https://www.maybank2u.com.my" target="_blank" class="bg-yellow-400 text-black text-xs font-bold py-2 rounded-lg text-center hover:bg-yellow-500 shadow-sm">Maybank2u</a>
+                            <a href="https://www.cimbclicks.com.my" target="_blank" class="bg-red-600 text-white text-xs font-bold py-2 rounded-lg text-center hover:bg-red-700 shadow-sm">CIMB</a>
+                            <a href="https://www.mybsn.com.my" target="_blank" class="bg-blue-500 text-white text-xs font-bold py-2 rounded-lg text-center hover:bg-blue-600 shadow-sm">MyBSN</a>
+                        </div>
+                    </div>
+
+                    <div id="view-fpx" class="hidden mb-6 p-6 text-center border border-green-200 rounded-2xl bg-green-50">
+                        <i class="fas fa-shield-alt text-4xl text-green-500 mb-3"></i>
+                        <p class="text-sm font-bold text-gray-900">Pembayaran Online Selamat</p>
+                        <p class="text-xs text-gray-600 mt-2">Anda akan dibawa ke portal pembayaran (FPX) selepas klik Sahkan Pesanan.</p>
+                    </div>
+
+                    <div id="receipt-upload-box" class="mb-6 p-4 border-2 border-dashed border-gray-300 rounded-xl bg-white hover:border-gold transition-colors">
+                        <label class="block text-sm font-bold text-gray-700 mb-2 cursor-pointer text-center">
+                            <i class="fas fa-upload mr-2 text-2xl mb-2 text-gold block"></i> Upload Resit Bayaran (Pilihan)
+                            <input type="file" id="cust-receipt" accept="image/*" class="w-full mt-2 text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-gray-100 file:text-gray-700 cursor-pointer">
+                        </label>
+                        <p class="text-[10px] text-gray-400 text-center mt-2">Boleh juga hantar resit di WhatsApp nanti.</p>
+                    </div>
+
+                    <button onclick="submitOrder()" class="mt-auto w-full bg-whatsapp hover:bg-green-600 text-white font-black py-4 rounded-xl shadow-lg uppercase tracking-widest transition-all text-lg flex justify-center items-center">
+                        Sahkan Pesanan <i class="fas fa-check-circle ml-3 text-xl"></i>
+                    </button>
+                    <p id="checkout-error" class="text-danger text-sm font-bold text-center mt-3 hidden bg-red-50 border border-red-200 p-2 rounded">Sila lengkapkan maklumat borang & pilih negeri!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-modal" class="fixed inset-0 z-[65] bg-black/80 backdrop-blur-md hidden flex justify-center items-center px-4">
+        <div class="bg-white text-gray-900 max-w-md w-full rounded-[30px] p-8 text-center shadow-2xl transform scale-100 transition-transform">
+            <div class="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl shadow-sm">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="text-3xl font-black mb-2 text-gray-900">Pesanan Direkod!</h2>
+            <p class="text-gray-500 font-medium mb-6">Terima kasih. Tempahan anda telah disimpan di dalam sistem kami.</p>
+            
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-6">
+                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">No. Rujukan (Order ID)</p>
+                <p class="text-2xl font-black text-gray-900 font-mono" id="success-order-id">ORD-XXXXX</p>
+                <div class="border-t border-gray-200 my-3"></div>
+                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Jumlah Perlu Dibayar</p>
+                <p class="text-2xl font-black text-green-600" id="success-total">RM 0.00</p>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-2xl mb-6">
+                <p class="text-sm font-bold text-yellow-800 mb-2"><i class="fas fa-exclamation-triangle mr-1"></i> LANGKAH TERAKHIR:</p>
+                <p class="text-xs text-yellow-700">Untuk membolehkan kami memproses penghantaran segera, sila tekan butang di bawah untuk hantar butiran & resit ke WhatsApp admin.</p>
+            </div>
+
+            <button onclick="sendToWhatsApp()" class="w-full bg-whatsapp hover:bg-green-600 text-white font-black py-4 rounded-xl shadow-[0_10px_20px_rgba(37,211,102,0.3)] uppercase tracking-wider text-lg flex justify-center items-center transition-transform hover:-translate-y-1">
+                <i class="fab fa-whatsapp text-2xl mr-2"></i> Hantar Ke WhatsApp
+            </button>
+            <button onclick="closeSuccessModal()" class="w-full mt-4 text-gray-400 text-sm font-bold hover:text-gray-600">Tutup Halaman Ini</button>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 z-[70] bg-black/90 backdrop-blur-sm hidden overflow-y-auto">
+        <div class="min-h-screen px-2 py-6 flex justify-center items-start md:items-center">
+            <div class="bg-gray-100 text-gray-900 w-full max-w-7xl rounded-[20px] shadow-2xl overflow-hidden relative min-h-[85vh] flex flex-col">
+                
+                <!-- Login View -->
+                <div id="admin-login-view" class="p-10 max-w-md mx-auto text-center my-auto w-full">
+                    <button onclick="closeAdmin()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl bg-white w-10 h-10 rounded-full shadow-sm"><i class="fas fa-times"></i></button>
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600 text-4xl shadow-sm"><i class="fas fa-shield-alt"></i></div>
+                    <h2 class="text-3xl font-black mb-2">Admin Panel Pro</h2>
+                    <p class="text-gray-500 mb-8 font-medium">CMS Sistem E-Commerce</p>
+                    <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                        <input type="password" id="admin-pass" required placeholder="Kata Laluan" class="w-full px-5 py-4 border-2 rounded-xl text-center font-bold text-lg focus:border-blue-500 outline-none shadow-sm">
+                        <p id="admin-error" class="text-red-500 text-sm font-bold hidden bg-red-50 border border-red-100 p-2 rounded">Katalaluan Salah!</p>
+                        <button type="submit" class="w-full bg-gray-900 hover:bg-black text-white font-black py-4 rounded-xl text-lg transition-colors shadow-lg">Log Masuk Dashboard</button>
+                    </form>
+                </div>
+
+                <!-- CMS Dashboard View -->
+                <div id="admin-dash-view" class="hidden flex-col h-full flex-1">
+                    <div class="bg-gray-900 text-white p-4 flex justify-between items-center shadow-md z-10">
+                        <h2 class="text-xl font-black uppercase tracking-wider"><i class="fab fa-wordpress mr-2 text-blue-400"></i> WooCommerce Editor Pro</h2>
+                        <button onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg text-sm font-bold transition-colors"><i class="fas fa-sign-out-alt mr-1"></i> Keluar</button>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row flex-1 overflow-hidden bg-gray-50">
+                        <!-- Sidebar Tabs -->
+                        <div class="w-full md:w-64 bg-white border-r border-gray-200 overflow-y-auto shadow-sm z-0">
+                            <div class="flex md:flex-col overflow-x-auto md:overflow-x-visible hide-scroll">
+                                <button onclick="switchAdminTab('orders')" id="tab-orders" class="admin-tab-btn active"><i class="fas fa-shopping-bag w-6"></i> Pesanan Pelanggan</button>
+                                <button onclick="switchAdminTab('products')" id="tab-products" class="admin-tab-btn"><i class="fas fa-box w-6"></i> Urus Produk & Harga</button>
+                                <button onclick="switchAdminTab('shipping')" id="tab-shipping" class="admin-tab-btn"><i class="fas fa-truck w-6"></i> Tetapan Postage</button>
+                                <button onclick="switchAdminTab('payment')" id="tab-payment" class="admin-tab-btn"><i class="fas fa-wallet w-6"></i> Cara Pembayaran</button>
+                                <button onclick="switchAdminTab('testimonials')" id="tab-testimonials" class="admin-tab-btn"><i class="fas fa-star w-6"></i> Review & Testimoni</button>
+                                <button onclick="switchAdminTab('copywriting')" id="tab-copywriting" class="admin-tab-btn"><i class="fas fa-pen-nib w-6"></i> Web & Copywriting</button>
+                                <button onclick="switchAdminTab('social')" id="tab-social" class="admin-tab-btn"><i class="fas fa-users w-6"></i> Social Proof & Live</button>
+                                <button onclick="switchAdminTab('tracking')" id="tab-tracking" class="admin-tab-btn"><i class="fas fa-chart-line w-6"></i> Adsense & FB Pixel</button>
+                            </div>
+                        </div>
+
+                        <!-- Content Panels -->
+                        <div class="flex-1 p-4 md:p-8 overflow-y-auto relative max-h-[80vh]">
+                            
+                            <!-- Panel: Orders -->
+                            <div id="panel-orders" class="admin-panel block">
+                                <h3 class="text-2xl font-black mb-6 flex items-center"><i class="fas fa-inbox text-blue-500 mr-3"></i> Senarai Pesanan Baru</h3>
+                                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-x-auto">
+                                    <table class="w-full text-sm text-left">
+                                        <thead class="bg-gray-100 text-gray-600 font-bold uppercase text-xs"><tr><th class="p-4 rounded-tl-2xl">ID / Tarikh</th><th class="p-4">Maklumat Pelanggan</th><th class="p-4">Status & Action</th><th class="p-4 rounded-tr-2xl">Total / Resit Upload</th></tr></thead>
+                                        <tbody id="admin-orders-list" class="divide-y divide-gray-100"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Products -->
+                            <div id="panel-products" class="admin-panel hidden">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 class="text-2xl font-black flex items-center"><i class="fas fa-box text-blue-500 mr-3"></i> Urus Produk & Harga Diskaun</h3>
+                                    <button onclick="addNewProduct()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-bold text-sm shadow-md transition-colors">+ Tambah Produk</button>
+                                </div>
+                                <div id="admin-product-settings" class="space-y-4"></div>
+                            </div>
+
+                            <!-- Panel: Shipping -->
+                            <div id="panel-shipping" class="admin-panel hidden">
+                                <h3 class="text-2xl font-black mb-6 flex items-center"><i class="fas fa-truck text-blue-500 mr-3"></i> Tetapan Caj Postage (Zon)</h3>
+                                <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm grid md:grid-cols-3 gap-6">
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-2">Semenanjung Malaysia</label><div class="relative"><span class="absolute left-3 top-3 text-gray-400 font-bold">RM</span><input type="number" id="set-post-sm" class="w-full border-2 rounded-xl pl-10 p-3 font-black text-lg focus:border-blue-500 outline-none"></div></div>
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-2">Sabah, Sarawak & Labuan</label><div class="relative"><span class="absolute left-3 top-3 text-gray-400 font-bold">RM</span><input type="number" id="set-post-ss" class="w-full border-2 rounded-xl pl-10 p-3 font-black text-lg focus:border-blue-500 outline-none"></div></div>
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-2">Luar Negara (International)</label><div class="relative"><span class="absolute left-3 top-3 text-gray-400 font-bold">RM</span><input type="number" id="set-post-int" class="w-full border-2 rounded-xl pl-10 p-3 font-black text-lg focus:border-blue-500 outline-none"></div></div>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Payment -->
+                            <div id="panel-payment" class="admin-panel hidden">
+                                <h3 class="text-2xl font-black mb-6 flex items-center"><i class="fas fa-wallet text-blue-500 mr-3"></i> Sistem Pembayaran</h3>
+                                <div class="space-y-6">
+                                    <div class="bg-white p-6 rounded-2xl border shadow-sm border-l-4 border-yellow-500 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                                        <div class="flex-1">
+                                            <h4 class="font-black text-lg mb-2">1. QR Code Pay (DuitNow)</h4>
+                                            <p class="text-sm text-gray-500 mb-4">Muat naik gambar QR code perniagaan anda. Sistem automatik simpan secara Base64.</p>
+                                            <label class="bg-gray-100 hover:bg-gray-200 border-2 border-dashed border-gray-300 px-4 py-3 rounded-xl cursor-pointer font-bold text-sm inline-block">
+                                                <i class="fas fa-upload mr-2"></i> Upload Gambar QR Baru
+                                                <input type="file" accept="image/*" onchange="handleAdminImgUpload(this, 'qr')" class="hidden">
+                                            </label>
+                                        </div>
+                                        <div class="bg-gray-50 p-2 rounded-xl border relative"><img id="admin-qr-preview" class="w-32 h-32 object-contain bg-white" onerror="this.src='https://placehold.co/200?text=TIADA+QR';"></div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl border shadow-sm border-l-4 border-blue-500">
+                                        <h4 class="font-black text-lg mb-4">2. Manual Bank Transfer</h4>
+                                        <div class="grid md:grid-cols-3 gap-4">
+                                            <div><label class="text-xs font-bold text-gray-500 mb-1 block">Nama Bank (Cth: Maybank)</label><input type="text" id="set-bank-name" class="w-full border-2 p-3 rounded-xl font-bold"></div>
+                                            <div><label class="text-xs font-bold text-gray-500 mb-1 block">No Akaun Syarikat</label><input type="text" id="set-bank-acc" class="w-full border-2 p-3 rounded-xl font-bold text-blue-600"></div>
+                                            <div><label class="text-xs font-bold text-gray-500 mb-1 block">Nama Pemegang / Syarikat</label><input type="text" id="set-bank-holder" class="w-full border-2 p-3 rounded-xl font-bold"></div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl border shadow-sm border-l-4 border-green-500">
+                                        <h4 class="font-black text-lg mb-2">3. URL Payment Gateway (FPX/Kad)</h4>
+                                        <p class="text-sm text-gray-500 mb-4">Letakkan link borang bayaran ToyyibPay / SenangPay / Stripe di sini. Jika diisi, pembeli dibawa ke sana.</p>
+                                        <input type="url" id="set-gateway-url" placeholder="https://toyyibpay.com/borang-kopi" class="w-full border-2 p-3 rounded-xl font-mono text-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Testimonials -->
+                            <div id="panel-testimonials" class="admin-panel hidden">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 class="text-2xl font-black flex items-center"><i class="fas fa-star text-blue-500 mr-3"></i> Urus Testimoni & Bukti Bergambar</h3>
+                                    <button onclick="addNewTestimonial()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-bold text-sm shadow-md transition-colors">+ Tambah Testimoni</button>
+                                </div>
+                                <div id="admin-testimoni-settings" class="space-y-4"></div>
+                            </div>
+
+                            <!-- Panel: Copywriting -->
+                            <div id="panel-copywriting" class="admin-panel hidden">
+                                <h3 class="text-2xl font-black mb-6 flex items-center"><i class="fas fa-pen-nib text-blue-500 mr-3"></i> Page Builder & Copywriting</h3>
+                                <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-6">
+                                    
+                                    <div>
+                                        <h4 class="font-black text-lg mb-4 text-gray-800 border-b pb-2">A. Bahagian Header (Atas)</h4>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">Tajuk Utama (Hero Headline)</label>
+                                        <textarea id="set-hero-title" rows="2" class="w-full border-2 p-3 rounded-xl font-bold font-mono text-sm focus:border-blue-500 outline-none mb-4"></textarea>
+                                        
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">Sub-Tajuk (Penerangan Produk)</label>
+                                        <textarea id="set-hero-sub" rows="2" class="w-full border-2 p-3 rounded-xl focus:border-blue-500 outline-none mb-4"></textarea>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex justify-between items-center mt-6 border-b pb-2 mb-4">
+                                            <h4 class="font-black text-lg text-gray-800">B. Bahagian Storytelling (Kisah Prospek)</h4>
+                                            <button onclick="addNewStory()" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-lg font-bold hover:bg-blue-700">+ Tambah Cerita</button>
+                                        </div>
+                                        <div id="admin-story-settings" class="space-y-4"></div>
+                                    </div>
+
+                                    <div>
+                                        <h4 class="font-black text-lg mb-4 text-gray-800 border-b pb-2 mt-6">C. Masalah Prospek (Pain Points)</h4>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">Tajuk Masalah</label>
+                                        <input type="text" id="set-pain-title" class="w-full border-2 p-3 rounded-xl font-bold mb-4">
+                                        <div class="space-y-3">
+                                            <input type="text" id="set-pain-1" class="w-full border-2 p-3 rounded-xl text-sm" placeholder="Masalah 1">
+                                            <input type="text" id="set-pain-2" class="w-full border-2 p-3 rounded-xl text-sm" placeholder="Masalah 2">
+                                            <input type="text" id="set-pain-3" class="w-full border-2 p-3 rounded-xl text-sm" placeholder="Masalah 3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Social Proof -->
+                            <div id="panel-social" class="admin-panel hidden">
+                                <h3 class="text-2xl font-black mb-6 flex items-center"><i class="fas fa-users text-blue-500 mr-3"></i> Taktik Psikologi (Social Proof)</h3>
+                                <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-6">
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                            <label class="font-black text-gray-800 mb-2 block">Kaunter 'Live Viewers' Palsu</label>
+                                            <p class="text-xs text-gray-500 mb-4">Nombor ini akan berubah rawak di header.</p>
+                                            <div class="flex items-center gap-4">
+                                                <input type="number" id="set-social-base" class="w-24 border-2 p-2 rounded-xl font-bold text-center">
+                                                <select id="set-social-live-enable" class="border-2 p-2 rounded-xl font-bold flex-1"><option value="true">ON (Papar di Header)</option><option value="false">OFF (Sorok)</option></select>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                            <label class="font-black text-gray-800 mb-2 block">Total Pembeli (Tunjuk Laris)</label>
+                                            <p class="text-xs text-gray-500 mb-4">Paparan angka di atas senarai produk.</p>
+                                            <input type="number" id="set-social-total" class="w-full border-2 p-3 rounded-xl font-bold">
+                                        </div>
+                                    </div>
+                                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                                        <label class="font-black text-gray-800 mb-2 block">Popup "Baru Membeli" (Kiri Bawah)</label>
+                                        <p class="text-xs text-gray-500 mb-4">Popup ni akan muncul setiap 15 saat menunjukkan nama pembeli secara rawak.</p>
+                                        <select id="set-social-popup-enable" class="border-2 p-3 rounded-xl font-bold w-full"><option value="true">ON (Muncul Popup)</option><option value="false">OFF (Matikan Popup)</option></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Tracking & Adsense -->
+                            <div id="panel-tracking" class="admin-panel hidden">
+                                <h3 class="text-2xl font-black mb-6 flex items-center"><i class="fas fa-chart-line text-blue-500 mr-3"></i> Pixel, G-TAG & Google AdSense</h3>
+                                <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-6">
+                                    <div class="grid md:grid-cols-2 gap-6 border-b border-gray-100 pb-6">
+                                        <div><label class="block text-sm font-bold mb-2 text-blue-600"><i class="fab fa-facebook mr-1"></i> Facebook Pixel ID</label><input type="text" id="set-pixel" placeholder="Cth: 1234567890" class="w-full border-2 p-3 rounded-xl font-bold"></div>
+                                        <div><label class="block text-sm font-bold mb-2 text-red-500"><i class="fab fa-google mr-1"></i> Google Analytics (G-TAG)</label><input type="text" id="set-gtag" placeholder="Cth: G-XXXXXXXXXX" class="w-full border-2 p-3 rounded-xl font-bold"></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-black text-lg mb-4 text-yellow-600"><i class="fab fa-google mr-1"></i> Google AdSense Config</h4>
+                                        <div class="space-y-4">
+                                            <div><label class="block text-sm font-bold mb-1">AdSense Client ID (ca-pub-xxx)</label><input type="text" id="set-ads-client" placeholder="ca-pub-0000000000000000" class="w-full border-2 p-3 rounded-xl font-mono text-sm"></div>
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><label class="block text-sm font-bold mb-1">Slot ID 1 (Tengah Artikel)</label><input type="text" id="set-ads-slot1" placeholder="1234567890" class="w-full border-2 p-3 rounded-xl font-mono text-sm"></div>
+                                                <div><label class="block text-sm font-bold mb-1">Slot ID 2 (Atas Produk)</label><input type="text" id="set-ads-slot2" placeholder="0987654321" class="w-full border-2 p-3 rounded-xl font-mono text-sm"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Admin Save Button -->
+                            <div class="sticky bottom-0 bg-gray-50/90 backdrop-blur pt-4 mt-6 border-t border-gray-200 flex justify-end pb-4 z-20 rounded-b-xl">
+                                <span id="save-msg" class="text-green-600 font-black mr-4 my-auto hidden flex items-center text-lg"><i class="fas fa-check-circle mr-2"></i> BERJAYA DISIMPAN!</span>
+                                <button onclick="saveAdminSettings()" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl font-black shadow-lg text-lg uppercase tracking-wider transition-transform transform hover:-translate-y-1">
+                                    Simpan Perubahan <i class="fas fa-save ml-2"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data lalai (Default Data) - Boleh diubah dalam Admin Panel
+        const DEFAULT_STATE = {
+            products: [
+                { id: 'p1', name: 'TRIAL PACK - 5 SACHET', desc: 'Risau membazir beli tak minum boleh beli pack percubaan dulu, dah rasa serasi baru standby beli 1 Kotak.', originalPrice: 50.00, price: 35.00, stock: 15, img: 'image.png', tag: 'Sale!' },
+                { id: 'p2', name: '1 KOTAK PENUH - 20 SACHET', desc: 'Pilihan paling jimat dan berbaloi untuk amalan harian. 100% Original Direct Kilang.', originalPrice: 150.00, price: 90.00, stock: 50, img: 'image_6.png', tag: 'Best Value' }
+            ],
+            testimonials: [
+                { id: 't1', isImg: false, name: 'Azman T.', text: 'Terbaik bos! Badan rasa ringan. Tak ngantuk langsung drive jauh dari Johor ke KL semalam.', img: '' },
+                { id: 't2', isImg: false, name: 'Syafiq R.', text: 'Barang sampai laju, packaging secure habis. Memang padu! Isteri senyum memanjang pagi ni.', img: '' },
+                { id: 't3', isImg: false, name: 'Kamal (Johor)', text: 'Repeat order kali ke-3. Rasa sedap, tak manis sangat. Khasiat tongkat ali dia memang terasa pekat.', img: '' },
+                { id: 't4', isImg: false, name: 'Haikal M.', text: 'Dulu selalu tewas awal, lepas amal kopi songkok ni memang beza. Ego lelaki kembali pulih. Berbaloi harga.', img: '' },
+                { id: 't5', isImg: true, name: 'Bukti Bergambar', text: '', img: 'image_4.png' }
+            ],
+            stories: [
+                { id: 's1', title: 'Kisah Abang Seman (Bukan Nama Sebenar):', text: '"Dulu lepas balik kerja, badan dah lemau. Nak layan isteri pun tak larat. Kalau \'jalan\' pun sekejap je dah kecundang. Isteri tak cakap apa, tapi riak wajah dia nampak kecewa. Tercabar ego saya sebagai suami..."' },
+                { id: 's2', title: 'Kisah Zaki, Pemandu Lori (38 Tahun):', text: '"Kerja bawak lori ni urat semua tegang. Balik rumah memang tidur je memanjang. Nasib baik jumpa kopi ni, minum 1 sachet terus segar biji mata. Badan ringan, nak \'bersama\' isteri pun tenaga macam orang muda balik!"' },
+                { id: 's3', title: 'Kisah Haji Rosli (55 Tahun):', text: '"Umur dah masuk 5 series ni faham-faham jelah. Senjata selalu tewas awal. Tapi sejak amalkan separuh sachet kopi songkok ni setiap pagi, tenaga luar biasa. Isteri pun pelik dari mana datang tenaga tu. Alhamdulillah."' },
+                { id: 's4', title: 'Kisah Azlan, Peniaga (42 Tahun):', text: '"Bila stress fikir bisnes, prestasi di ranjang merudum teruk. Kepala pening, badan lesu. Kopi ni bukan je buat tenaga batin padu, tapi hilangkan lenguh sendi satu badan. Tidur malam pun makin lena."' }
+            ],
+            copywriting: {
+                painTitle: 'Kerja Penat, Stress, Faktor Umur... <br/><span class="text-gold">Prestasi Merudum Teruk?</span>',
+                pain1: 'Badan lemau, lesu & tak bermaya lepas balik kerja.',
+                pain2: 'Mengantuk tersengguk-sengguk masa memandu jarak jauh.',
+                pain3: 'Sakit-sakit urat dan lenguh sendi satu badan.'
+            },
+            social: { liveViewersBase: 120, enableLive: true, enablePopup: true, totalBuyers: 15420 },
+            shipping: { sm: 8, ss: 15, int: 50 },
+            payment: { qr: '', gateway: '', bankName: 'Maybank', bankAcc: '1234567890', bankHolder: 'Syarikat Al-Ambiak' },
+            theme: { heroTitle: 'Kopi Panggung <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">Al-Ambiak</span>', heroSub: 'Formulasi Ekstrak Herba Semulajadi Gred Premium Untuk Tenaga, Stamina Dan Kecergasan Maksimum Lelaki Sejati.' },
+            tracking: { fbPixel: '', gtag: '', adsClient: '', adsSlot1: '', adsSlot2: '' },
+            cart: [], orders: []
+        };
+
+        let state = {}; 
+        let tempReceipt = null; 
+        let generatedWaLink = ""; 
+        let liveViewerInterval;
+
+        function initApp() {
+            // Load state from local storage or use defaults
+            ['products', 'testimonials', 'stories', 'copywriting', 'social', 'shipping', 'payment', 'theme', 'tracking', 'cart', 'orders'].forEach(key => {
+                const stored = localStorage.getItem(`cms_${key}`);
+                state[key] = stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(DEFAULT_STATE[key]));
+            });
+
+            applyThemeCopywritingAndTracking();
+            renderProducts();
+            renderTestimonials();
+            renderStories();
+            updateCartUI();
+            setupSocialProof();
+        }
+
+        function applyThemeCopywritingAndTracking() {
+            document.getElementById('hero-title').innerHTML = state.theme.heroTitle;
+            document.getElementById('hero-subtitle').innerText = state.theme.heroSub;
+            
+            document.getElementById('ui-pain-headline').innerHTML = state.copywriting.painTitle;
+            document.getElementById('ui-pain-1').innerText = state.copywriting.pain1;
+            document.getElementById('ui-pain-2').innerText = state.copywriting.pain2;
+            document.getElementById('ui-pain-3').innerText = state.copywriting.pain3;
+
+            document.getElementById('ui-total-buyers').innerText = state.social.totalBuyers.toLocaleString();
+
+            let scriptHtml = '';
+            if (state.tracking.fbPixel) { scriptHtml += `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${state.tracking.fbPixel}');fbq('track', 'PageView');<\/script>`; }
+            if (state.tracking.gtag) { scriptHtml += `<script async src="https://www.googletagmanager.com/gtag/js?id=${state.tracking.gtag}"><\/script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${state.tracking.gtag}');<\/script>`; }
+            if (state.tracking.adsClient) { 
+                scriptHtml += `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${state.tracking.adsClient}" crossorigin="anonymous"><\/script>`; 
+                renderAdSenseSlots(); 
+            }
+            document.getElementById('tracking-scripts').innerHTML = scriptHtml;
+        }
+
+        function renderAdSenseSlots() {
+            const slot1 = document.getElementById('adsense-slot-1-container'); const slot2 = document.getElementById('adsense-slot-2-container');
+            if (state.tracking.adsClient && state.tracking.adsSlot1) { slot1.innerHTML = `<ins class="adsbygoogle block w-full" data-ad-client="${state.tracking.adsClient}" data-ad-slot="${state.tracking.adsSlot1}" data-ad-format="auto" data-full-width-responsive="true"></ins>`; try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){} } else { slot1.innerHTML = `<div class="ads-placeholder"><p class="text-sm text-gray-500">Google AdSense (Slot 1)</p></div>`; }
+            if (state.tracking.adsClient && state.tracking.adsSlot2) { slot2.innerHTML = `<ins class="adsbygoogle block w-full" data-ad-client="${state.tracking.adsClient}" data-ad-slot="${state.tracking.adsSlot2}" data-ad-format="auto" data-full-width-responsive="true"></ins>`; try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){} } else { slot2.innerHTML = `<div class="ads-placeholder"><p class="text-sm text-gray-500">Google AdSense (Slot 2)</p></div>`; }
+        }
+
+        function renderStories() {
+            const container = document.getElementById('story-container'); container.innerHTML = '';
+            state.stories.forEach(s => {
+                container.innerHTML += `
+                <div class="bg-white border border-gray-200 p-6 md:p-8 rounded-2xl shadow-sm relative mb-4">
+                    <i class="fas fa-quote-left text-4xl text-gray-200 absolute top-4 left-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-3 text-lg relative z-10">${s.title}</h3>
+                    <div class="text-gray-600 italic text-lg leading-relaxed relative z-10 space-y-4">${s.text}</div>
+                </div>`;
+            });
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid'); grid.innerHTML = '';
+            state.products.forEach(p => {
+                const out = p.stock <= 0;
+                grid.innerHTML += `
+                    <div class="bg-white border border-gray-100 rounded-[30px] overflow-hidden flex flex-col shadow-lg hover:shadow-xl transition-shadow group">
+                        <div class="bg-gray-50 aspect-video flex items-center justify-center p-4 relative overflow-hidden border-b border-gray-100">
+                            ${p.tag ? `<span class="absolute top-4 right-4 bg-danger text-white text-xs font-black px-3 py-1 rounded-full z-10 animate-pulse">${p.tag}</span>` : ''}
+                            <img src="${p.img}" class="h-full object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400/f8fafc/cbd5e1?text=Produk';">
+                        </div>
+                        <div class="p-8 flex flex-col flex-1">
+                            <h3 class="text-2xl font-black mb-2 text-gray-900">${p.name}</h3>
+                            <div class="flex items-center text-gold text-xs mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span class="text-gray-500 ml-2">(Terjual 1000+)</span></div>
+                            <p class="text-sm text-gray-600 mb-6 flex-1 leading-relaxed">${p.desc}</p>
+                            <p class="text-xs ${out?'text-danger':'text-green-600'} font-bold mb-4 bg-gray-50 inline-block px-3 py-1 rounded-lg w-fit border ${out?'border-red-100':'border-green-100'}">Stok: ${out?'Habis (Sold Out)':p.stock}</p>
+                            <div class="flex justify-between items-end border-t border-gray-100 pt-4">
+                                <div>
+                                    <p class="text-gray-500 line-through text-xs mb-1">Biasa: RM ${parseFloat(p.originalPrice || 0).toFixed(2)}</p>
+                                    <span class="text-3xl font-black text-green-600">RM ${parseFloat(p.price || 0).toFixed(2)}</span>
+                                </div>
+                                <button onclick="addToCart('${p.id}')" ${out?'disabled':''} class="${out?'bg-gray-200 text-gray-400 cursor-not-allowed':'bg-gray-900 hover:bg-green-600 text-white shadow-md hover:scale-110'} w-14 h-14 rounded-2xl flex items-center justify-center text-xl transition-all"><i class="fas ${out?'fa-times':'fa-cart-plus'}"></i></button>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function renderTestimonials() {
+            const grid = document.getElementById('testimoni-grid'); grid.innerHTML = '';
+            state.testimonials.forEach(t => {
+                grid.innerHTML += t.isImg 
+                    ? `<div class="bg-white border border-gray-100 p-2 rounded-[30px] h-72 shadow-lg hover:scale-105 transition-transform"><img src="${t.img}" class="w-full h-full object-cover rounded-[22px]" onerror="this.src='https://placehold.co/300x400/f8fafc/cbd5e1?text=Bukti+Pelanggan';"></div>`
+                    : `<div class="bg-white border border-gray-100 p-8 rounded-[30px] shadow-lg relative hover:-translate-y-2 transition-transform"><i class="fas fa-quote-right absolute top-6 right-6 text-4xl text-gray-100"></i><div class="flex text-gold text-sm mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-700 italic mb-6 leading-relaxed">"${t.text}"</p><div class="flex items-center mt-auto"><div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-black mr-3">${t.name.charAt(0)}</div><div><h4 class="font-black text-gray-900 text-sm">${t.name}</h4><span class="text-[10px] text-green-600 font-bold"><i class="fas fa-check-circle mr-1"></i>Verified Buyer</span></div></div></div>`;
+            });
+        }
+
+        function scrollToProducts() {
+            const el = document.getElementById('products-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleCart(force = false) { 
+            const sb = document.getElementById('cart-sidebar');
+            const c = document.getElementById('cart-content'); 
+            if(sb.classList.contains('hidden') || force) { 
+                sb.classList.remove('hidden'); 
+                setTimeout(() => c.classList.remove('translate-x-full'), 10); 
+            } else { 
+                c.classList.add('translate-x-full'); 
+                setTimeout(() => sb.classList.add('hidden'), 300); 
+            } 
+        }
+        
+        function addToCart(id) {
+            const p = state.products.find(x => x.id === id); 
+            if(!p || p.stock <= 0) return;
+            const item = state.cart.find(c => c.id === id);
+            if(item) { 
+                if(item.qty < p.stock) item.qty++; 
+            } else {
+                state.cart.push({...p, qty: 1});
+            }
+            saveState('cart'); 
+            updateCartUI(); 
+            toggleCart(true);
+        }
+
+        function removeFromCart(id) { 
+            state.cart = state.cart.filter(c => c.id !== id); 
+            saveState('cart'); 
+            updateCartUI(); 
+        }
+
+        function updateQty(id, delta) {
+            const item = state.cart.find(c => c.id === id);
+            const p = state.products.find(x => x.id === id);
+            if(item && p) {
+                item.qty += delta;
+                if(item.qty < 1) item.qty = 1;
+                if(item.qty > p.stock) item.qty = p.stock;
+                saveState('cart'); 
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const c = document.getElementById('cart-items'); 
+            c.innerHTML = ''; 
+            let qty = 0, total = 0;
+            state.cart.forEach(i => {
+                qty += i.qty; 
+                total += (i.price * i.qty);
+                c.innerHTML += `
+                <div class="bg-white p-4 rounded-2xl flex gap-4 relative border border-gray-200 shadow-sm">
+                    <img src="${i.img}" class="w-20 h-20 rounded-xl object-cover border border-gray-100" onerror="this.src='https://placehold.co/100';">
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-gray-900">${i.name}</h4>
+                        <p class="text-green-600 font-black text-lg mt-1">RM ${parseFloat(i.price).toFixed(2)}</p>
+                        <div class="flex items-center mt-2 border border-gray-200 rounded-lg w-max bg-gray-50">
+                            <button onclick="updateQty('${i.id}', -1)" class="px-2 py-1 text-gray-600 hover:bg-gray-200 rounded-l-lg"><i class="fas fa-minus text-xs"></i></button>
+                            <span class="px-3 text-xs font-bold">${i.qty}</span>
+                            <button onclick="updateQty('${i.id}', 1)" class="px-2 py-1 text-gray-600 hover:bg-gray-200 rounded-r-lg"><i class="fas fa-plus text-xs"></i></button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart('${i.id}')" class="absolute top-4 right-4 text-gray-400 hover:text-danger bg-gray-50 w-8 h-8 rounded-full flex items-center justify-center transition-colors shadow-sm"><i class="fas fa-trash text-sm"></i></button>
+                </div>`;
+            });
+            document.getElementById('cart-count').innerText = qty; 
+            document.getElementById('cart-total-display').innerText = total.toFixed(2); 
+            document.getElementById('cart-footer').style.display = qty > 0 ? 'block' : 'none';
+        }
+
+        function proceedToCheckout() {
+            if(state.cart.length === 0) return; 
+            toggleCart(); 
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            
+            document.getElementById('bank-name-display').innerText = state.payment.bankName;
+            document.getElementById('bank-acc-display').innerText = state.payment.bankAcc;
+            document.getElementById('bank-holder-display').innerText = state.payment.bankHolder;
+            document.getElementById('checkout-qr-img').src = state.payment.qr;
+
+            const ci = document.getElementById('checkout-items'); ci.innerHTML = ''; 
+            let sub = 0;
+            state.cart.forEach(i => { 
+                sub += (i.price * i.qty); 
+                ci.innerHTML += `<div class="flex justify-between border-b border-gray-100 pb-2"><span>${i.qty}x ${i.name}</span><b class="text-gray-900">RM ${(i.price*i.qty).toFixed(2)}</b></div>`; 
+            });
+            
+            document.getElementById('chk-subtotal').innerText = `RM ${sub.toFixed(2)}`;
+            document.getElementById('cust-state').value = ''; 
+            updateCheckoutUI();
+            
+            document.getElementById('cust-receipt').onchange = (e) => { 
+                const f = e.target.files[0]; 
+                if(!f) return; 
+                const r = new FileReader(); 
+                r.onload = () => tempReceipt = r.result; 
+                r.readAsDataURL(f); 
+            };
+        }
+        
+        function closeCheckout() { 
+            document.getElementById('checkout-modal').classList.add('hidden'); 
+            tempReceipt = null; 
+            document.getElementById('cust-receipt').value = ''; 
+        }
+
+        function updateCheckoutUI() {
+            const loc = document.getElementById('cust-state').value;
+            let post = 0; 
+            let sub = state.cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            
+            if(loc === 'Semenanjung') post = parseFloat(state.shipping.sm) || 0;
+            else if(loc === 'SabahSarawak') post = parseFloat(state.shipping.ss) || 0;
+            else if(loc === 'LuarNegara') post = parseFloat(state.shipping.int) || 0;
+
+            document.getElementById('chk-region').innerText = loc ? `(${document.getElementById('cust-state').options[document.getElementById('cust-state').selectedIndex].text})` : '';
+            document.getElementById('chk-postage').innerText = loc ? `RM ${post.toFixed(2)}` : 'Sila Pilih Negeri';
+            document.getElementById('chk-total').innerText = `RM ${(sub+post).toFixed(2)}`;
+        }
+
+        function togglePaymentView(v) {
+            document.getElementById('view-bank').classList.toggle('hidden', v !== 'bank');
+            document.getElementById('view-qr').classList.toggle('hidden', v !== 'qr');
+            document.getElementById('view-fpx').classList.toggle('hidden', v !== 'fpx');
+            document.getElementById('receipt-upload-box').classList.toggle('hidden', v === 'fpx');
+        }
+
+        function submitOrder() {
+            const n = document.getElementById('cust-name').value.trim(); 
+            const p = document.getElementById('cust-phone').value.trim(); 
+            const s = document.getElementById('cust-state').value; 
+            const a = document.getElementById('cust-address').value.trim();
+            const m = document.querySelector('input[name="payment_method"]:checked').value;
+            
+            if(!n || !p || !s || !a) { 
+                document.getElementById('checkout-error').classList.remove('hidden'); 
+                return; 
+            }
+            document.getElementById('checkout-error').classList.add('hidden');
+
+            let post = s === 'Semenanjung' ? state.shipping.sm : s === 'SabahSarawak' ? state.shipping.ss : state.shipping.int;
+            let total = state.cart.reduce((sum, i) => sum + (i.price * i.qty), 0) + parseFloat(post || 0);
+
+            // Tolak stok
+            state.cart.forEach(c => { 
+                const pr = state.products.find(x => x.id === c.id); 
+                if(pr) pr.stock = Math.max(0, pr.stock - c.qty); 
+            });
+            saveState('products');
+
+            const orderId = 'ORD-' + Math.floor(Math.random() * 90000 + 10000);
+            const order = { id: orderId, date: new Date().toISOString().split('T')[0], name: n, phone: p, loc: s, address: a, method: m, total: total, receipt: tempReceipt, status: 'Pending' };
+            state.orders.unshift(order); 
+            saveState('orders');
+
+            if(state.tracking.fbPixel && typeof fbq !== 'undefined') fbq('track', 'Purchase', {value: total, currency: 'MYR'});
+
+            let itemsTxt = state.cart.map(i => `- ${i.qty}x ${i.name}`).join('%0A');
+            state.cart = []; 
+            saveState('cart'); 
+            updateCartUI(); 
+            closeCheckout(); 
+            renderProducts();
+
+            if(m === 'fpx' && state.payment.gateway) {
+                window.location.href = `${state.payment.gateway}?amount=${total}&name=${n}&phone=${p}&order_id=${orderId}`;
+            } else {
+                let resitStatus = tempReceipt ? '*(Resit telah di-upload di website)*' : '*SILA LAMPIRKAN GAMBAR RESIT BERSAMA MESEJ INI*';
+                let waText = `*ORDER BARU (${orderId})*%0A%0A*Nama:* ${n}%0A*Tel:* ${p}%0A*Zon:* ${s}%0A*Alamat:* ${a}%0A%0A*Pesanan:*%0A${itemsTxt}%0A%0A*Cara Bayar:* ${m.toUpperCase()}%0A*TOTAL: RM ${total.toFixed(2)}*%0A%0A${resitStatus}`;
+                
+                generatedWaLink = `https://wa.me/60123456789?text=${waText}`; // TUKAR NO PHONE SINI
+                
+                document.getElementById('success-order-id').innerText = orderId;
+                document.getElementById('success-total').innerText = `RM ${total.toFixed(2)}`;
+                document.getElementById('success-modal').classList.remove('hidden');
+                document.getElementById('success-modal').classList.add('flex');
+            }
+        }
+
+        function sendToWhatsApp() { 
+            if(generatedWaLink) { 
+                window.open(generatedWaLink, '_blank'); 
+                closeSuccessModal(); 
+            } 
+        }
+        
+        function closeSuccessModal() { 
+            document.getElementById('success-modal').classList.add('hidden'); 
+            document.getElementById('success-modal').classList.remove('flex'); 
+        }
+
+        function setupSocialProof() {
+            const liveDisplay = document.getElementById('ui-live-viewers');
+            if(state.social.enableLive) {
+                liveDisplay.parentElement.style.display = 'flex';
+                clearInterval(liveViewerInterval);
+                let currentViewers = state.social.liveViewersBase;
+                liveDisplay.innerText = currentViewers;
+                liveViewerInterval = setInterval(() => {
+                    const change = Math.floor(Math.random() * 5) - 2;
+                    currentViewers = Math.max(state.social.liveViewersBase - 10, currentViewers + change);
+                    liveDisplay.innerText = currentViewers;
+                }, 5000);
+            } else { 
+                liveDisplay.parentElement.style.display = 'none'; 
+            }
+
+            const names = ['Ahmad', 'Syed', 'Faizal', 'Kamal', 'Daud', 'Azman', 'Haikal', 'Rosli', 'Zaki'];
+            const times = ['2 minit lalu', '5 minit lalu', 'Baru sahaja', '10 minit lalu'];
+            const pop = document.getElementById('live-popup');
+            
+            setInterval(() => {
+                if(!state.social.enablePopup || state.products.length === 0) return;
+                const nm = names[Math.floor(Math.random() * names.length)];
+                document.getElementById('popup-name').innerText = nm;
+                document.getElementById('popup-initial').innerText = nm.charAt(0);
+                document.getElementById('popup-product').innerText = state.products[Math.floor(Math.random()*state.products.length)].name;
+                document.getElementById('popup-time').innerText = times[Math.floor(Math.random() * times.length)];
+                
+                pop.classList.remove('translate-y-32', 'opacity-0');
+                setTimeout(() => pop.classList.add('translate-y-32', 'opacity-0'), 4000);
+            }, 18000);
+        }
+
+        function closeAdmin() { document.getElementById('admin-modal').classList.add('hidden'); }
+        
+        function logoutAdmin() { 
+            closeAdmin(); 
+            document.getElementById('admin-dash-view').classList.add('hidden'); 
+            document.getElementById('admin-login-view').classList.remove('hidden'); 
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            if(document.getElementById('admin-pass').value === '@dm1n456') { 
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dash-view').classList.remove('hidden'); 
+                document.getElementById('admin-dash-view').classList.add('flex');
+                populateAdminFields();
+                document.getElementById('admin-pass').value = '';
+            } else { 
+                document.getElementById('admin-error').classList.remove('hidden'); 
+                setTimeout(() => document.getElementById('admin-error').classList.add('hidden'), 3000); 
+            }
+        }
+
+        function switchAdminTab(t) {
+            const panels = document.querySelectorAll('.admin-panel'); 
+            const btns = document.querySelectorAll('.admin-tab-btn');
+            const targetPanel = document.getElementById(`panel-${t}`); 
+            const targetBtn = document.getElementById(`tab-${t}`);
+            if(!targetPanel || !targetBtn) return;
+            panels.forEach(p => { p.classList.add('hidden'); p.classList.remove('block'); }); 
+            btns.forEach(b => b.classList.remove('active'));
+            targetPanel.classList.remove('hidden'); 
+            targetPanel.classList.add('block'); 
+            targetBtn.classList.add('active');
+        }
+
+        function handleAdminImgUpload(input, type, id=null) {
+            const f = input.files[0]; 
+            if(!f) return; 
+            const r = new FileReader();
+            r.onload = () => {
+                if(type === 'qr') { 
+                    state.payment.qr = r.result; 
+                    document.getElementById('admin-qr-preview').src = r.result; 
+                }
+                else if(type === 'product' && id) { 
+                    const p = state.products.find(x => x.id === id); 
+                    if(p) { p.img = r.result; populateAdminFields(); } 
+                }
+                else if(type === 'testimoni' && id) { 
+                    const t = state.testimonials.find(x => x.id === id); 
+                    if(t) { t.img = r.result; populateAdminFields(); } 
+                }
+            }; 
+            r.readAsDataURL(f);
+        }
+
+        function addNewProduct() { state.products.push({ id: 'p'+Date.now(), name: 'Produk Baru', desc: 'Penerangan...', originalPrice: 100, price: 50, stock: 10, img: '', tag: 'New' }); populateAdminFields(); }
+        function deleteProduct(id) { state.products = state.products.filter(p=>p.id!==id); populateAdminFields(); }
+        
+        function addNewTestimonial() { state.testimonials.push({ id: 't'+Date.now(), isImg: false, name: 'Nama', text: 'Review...', img: '' }); populateAdminFields(); }
+        function deleteTestimonial(id) { state.testimonials = state.testimonials.filter(t=>t.id!==id); populateAdminFields(); }
+
+        function addNewStory() { state.stories.push({ id: 's'+Date.now(), title: 'Tajuk Baru:', text: 'Cerita...' }); populateAdminFields(); }
+        function deleteStory(id) { state.stories = state.stories.filter(s=>s.id!==id); populateAdminFields(); }
+        
+        function updateArr(arrName, id, key, val) { 
+            const obj = state[arrName].find(x => x.id === id); 
+            if(obj) { 
+                if(key === 'price' || key === 'originalPrice' || key === 'stock') obj[key] = parseFloat(val) || 0; 
+                else obj[key] = val; 
+            } 
+        }
+
+        function populateAdminFields() {
+            // Orders
+            document.getElementById('admin-orders-list').innerHTML = state.orders.length === 0 ? '<tr><td colspan="4" class="p-8 text-center text-gray-400">Belum ada pesanan</td></tr>' : state.orders.map(o => `<tr class="hover:bg-gray-50"><td class="p-4 border-b"><b>${o.id}</b><br><span class="text-xs text-gray-500">${o.date}</span></td><td class="p-4 border-b font-bold">${o.name}<br><span class="text-xs font-normal text-gray-500">${o.phone} | ${o.loc}</span><br><span class="text-xs text-gray-400">${o.address}</span></td><td class="p-4 border-b"><select onchange="state.orders.find(x=>x.id==='${o.id}').status=this.value; saveState('orders');" class="border p-2 text-xs font-bold rounded-lg w-full bg-gray-50 outline-none"><option ${o.status==='Pending'?'selected':''}>Pending</option><option ${o.status==='Paid'?'selected':''}>Paid (Lunas)</option><option ${o.status==='Shipped'?'selected':''}>Shipped (Pos)</option></select></td><td class="p-4 border-b"><div class="font-black text-green-600 bg-green-50 px-2 py-1 rounded inline-block text-sm">RM${o.total.toFixed(2)}</div><br>${o.receipt?`<a href="${o.receipt}" download="Resit_${o.id}.jpg" class="text-blue-500 text-xs font-bold mt-1 inline-block hover:underline"><i class="fas fa-image"></i> Lihat Resit Upload</a>`:'<span class="text-xs text-gray-400">Tiada resit</span>'}</td></tr>`).join('');
+
+            // Products
+            document.getElementById('admin-product-settings').innerHTML = state.products.map(p => `
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-5 items-start">
+                    <div class="relative"><img src="${p.img}" class="w-24 h-24 object-cover bg-gray-100 rounded-xl border" onerror="this.src='https://placehold.co/100';"><label class="absolute -bottom-2 -right-2 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:bg-blue-700 text-xs"><i class="fas fa-camera"></i><input type="file" accept="image/*" onchange="handleAdminImgUpload(this, 'product', '${p.id}')" class="hidden"></label></div>
+                    <div class="flex-1 space-y-3 w-full">
+                        <div class="flex gap-2">
+                            <input type="text" value="${p.name}" onchange="updateArr('products','${p.id}','name',this.value)" class="w-full border-2 p-2 text-sm rounded-lg font-bold" placeholder="Nama Produk">
+                            <input type="text" value="${p.tag || ''}" onchange="updateArr('products','${p.id}','tag',this.value)" class="w-1/3 border-2 p-2 text-sm rounded-lg" placeholder="Tag (Cth: Laris)">
+                        </div>
+                        <textarea onchange="updateArr('products','${p.id}','desc',this.value)" class="w-full border-2 p-2 text-xs rounded-lg" rows="2">${p.desc}</textarea>
+                        <div class="flex gap-2">
+                            <div class="w-1/3 relative"><span class="absolute left-2 top-2 text-gray-400 text-[10px] font-bold">Asal RM</span><input type="number" value="${p.originalPrice}" onchange="updateArr('products','${p.id}','originalPrice',this.value)" class="w-full border-2 pl-12 p-2 text-xs rounded-lg font-bold text-gray-400 line-through"></div>
+                            <div class="w-1/3 relative"><span class="absolute left-2 top-2 text-gray-400 text-[10px] font-bold">Promo RM</span><input type="number" value="${p.price}" onchange="updateArr('products','${p.id}','price',this.value)" class="w-full border-2 pl-14 p-2 text-xs rounded-lg font-bold text-green-600"></div>
+                            <div class="w-1/3 relative"><span class="absolute left-2 top-2 text-gray-400 text-[10px] font-bold">Stok:</span><input type="number" value="${p.stock}" onchange="updateArr('products','${p.id}','stock',this.value)" class="w-full border-2 pl-10 p-2 text-xs rounded-lg font-bold text-blue-600"></div>
+                        </div>
+                    </div>
+                    <button onclick="deleteProduct('${p.id}')" class="text-red-500 hover:bg-red-50 p-3 rounded-xl"><i class="fas fa-trash text-lg"></i></button>
+                </div>`).join('');
+
+            // Stories
+            document.getElementById('admin-story-settings').innerHTML = state.stories.map(s => `
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex gap-4 items-start">
+                    <div class="flex-1 space-y-2">
+                        <input type="text" value="${s.title}" onchange="updateArr('stories','${s.id}','title',this.value)" class="w-full border p-2 text-sm font-bold rounded-lg" placeholder="Tajuk Kisah">
+                        <textarea onchange="updateArr('stories','${s.id}','text',this.value)" class="w-full border p-2 text-sm rounded-lg" rows="3" placeholder="Isi cerita...">${s.text}</textarea>
+                    </div>
+                    <button onclick="deleteStory('${s.id}')" class="text-red-500 hover:bg-red-100 p-2 rounded-lg"><i class="fas fa-trash"></i></button>
+                </div>`).join('');
+
+            // Testimonials
+            document.getElementById('admin-testimoni-settings').innerHTML = state.testimonials.map(t => `
+                <div class="bg-white p-5 rounded-2xl border shadow-sm flex flex-col md:flex-row gap-5 items-start">
+                    <div class="w-full md:w-1/3">
+                        <select onchange="updateArr('testimonials','${t.id}','isImg',this.value==='true'); populateAdminFields();" class="border-2 p-2 text-xs font-bold rounded-lg w-full mb-3 bg-gray-50"><option value="false" ${!t.isImg?'selected':''}>Jenis: Teks + Nama</option><option value="true" ${t.isImg?'selected':''}>Jenis: Gambar Bukti (Upload)</option></select>
+                        ${t.isImg ? `<div class="relative"><img src="${t.img}" class="h-32 w-full object-cover bg-gray-100 rounded-xl border" onerror="this.src='https://placehold.co/100';"><label class="absolute -bottom-2 -right-2 bg-blue-600 text-white px-3 py-1 rounded-full cursor-pointer shadow-lg text-xs font-bold"><i class="fas fa-upload mr-1"></i>Upload<input type="file" accept="image/*" onchange="handleAdminImgUpload(this, 'testimoni', '${t.id}')" class="hidden"></label></div>` : `<div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-center"><i class="fas fa-font text-blue-300 text-3xl"></i></div>`}
+                    </div>
+                    <div class="flex-1 space-y-3 w-full">
+                        ${!t.isImg ? `
+                            <input type="text" value="${t.name}" onchange="updateArr('testimonials','${t.id}','name',this.value)" class="w-full border-2 p-2 text-sm rounded-lg font-bold" placeholder="Nama Pelanggan (Cth: Ahmad T.)">
+                            <textarea onchange="updateArr('testimonials','${t.id}','text',this.value)" class="w-full border-2 p-3 text-sm rounded-lg" rows="3" placeholder="Tulis review di sini...">${t.text}</textarea>
+                        ` : `<p class="text-sm text-gray-500 mt-2">Sila upload gambar bukti (Contoh screenshot perbualan WhatsApp).</p>`}
+                    </div>
+                    <button onclick="deleteTestimonial('${t.id}')" class="text-red-500 hover:bg-red-50 p-3 rounded-xl"><i class="fas fa-trash text-lg"></i></button>
+                </div>`).join('');
+
+            // Fields
+            document.getElementById('set-post-sm').value = state.shipping.sm; document.getElementById('set-post-ss').value = state.shipping.ss; document.getElementById('set-post-int').value = state.shipping.int;
+            document.getElementById('set-bank-name').value = state.payment.bankName; document.getElementById('set-bank-acc').value = state.payment.bankAcc; document.getElementById('set-bank-holder').value = state.payment.bankHolder; document.getElementById('set-gateway-url').value = state.payment.gateway;
+            document.getElementById('admin-qr-preview').src = state.payment.qr;
+            
+            document.getElementById('set-hero-title').value = state.theme.heroTitle; document.getElementById('set-hero-sub').value = state.theme.heroSub;
+            document.getElementById('set-pain-title').value = state.copywriting.painTitle; document.getElementById('set-pain-1').value = state.copywriting.pain1; document.getElementById('set-pain-2').value = state.copywriting.pain2; document.getElementById('set-pain-3').value = state.copywriting.pain3;
+            
+            document.getElementById('set-social-base').value = state.social.liveViewersBase; document.getElementById('set-social-live-enable').value = state.social.enableLive; document.getElementById('set-social-total').value = state.social.totalBuyers; document.getElementById('set-social-popup-enable').value = state.social.enablePopup;
+
+            document.getElementById('set-pixel').value = state.tracking.fbPixel; document.getElementById('set-gtag').value = state.tracking.gtag;
+            document.getElementById('set-ads-client').value = state.tracking.adsClient || ''; document.getElementById('set-ads-slot1').value = state.tracking.adsSlot1 || ''; document.getElementById('set-ads-slot2').value = state.tracking.adsSlot2 || '';
+        }
+
+        function saveState(key) { 
+            localStorage.setItem(`cms_${key}`, JSON.stringify(state[key])); 
+        }
+
+        function saveAdminSettings() {
+            state.shipping.sm = parseFloat(document.getElementById('set-post-sm').value) || 0; 
+            state.shipping.ss = parseFloat(document.getElementById('set-post-ss').value) || 0; 
+            state.shipping.int = parseFloat(document.getElementById('set-post-int').value) || 0;
+            state.payment.bankName = document.getElementById('set-bank-name').value; 
+            state.payment.bankAcc = document.getElementById('set-bank-acc').value; 
+            state.payment.bankHolder = document.getElementById('set-bank-holder').value; 
+            state.payment.gateway = document.getElementById('set-gateway-url').value;
+            
+            state.theme.heroTitle = document.getElementById('set-hero-title').value; 
+            state.theme.heroSub = document.getElementById('set-hero-sub').value;
+            state.copywriting.painTitle = document.getElementById('set-pain-title').value; 
+            state.copywriting.pain1 = document.getElementById('set-pain-1').value; 
+            state.copywriting.pain2 = document.getElementById('set-pain-2').value; 
+            state.copywriting.pain3 = document.getElementById('set-pain-3').value;
+            
+            state.social.liveViewersBase = parseInt(document.getElementById('set-social-base').value) || 0; 
+            state.social.enableLive = document.getElementById('set-social-live-enable').value === 'true'; 
+            state.social.totalBuyers = parseInt(document.getElementById('set-social-total').value) || 0; 
+            state.social.enablePopup = document.getElementById('set-social-popup-enable').value === 'true';
+
+            state.tracking.fbPixel = document.getElementById('set-pixel').value; 
+            state.tracking.gtag = document.getElementById('set-gtag').value;
+            state.tracking.adsClient = document.getElementById('set-ads-client').value; 
+            state.tracking.adsSlot1 = document.getElementById('set-ads-slot1').value; 
+            state.tracking.adsSlot2 = document.getElementById('set-ads-slot2').value;
+
+            ['products', 'testimonials', 'stories', 'copywriting', 'social', 'shipping', 'payment', 'theme', 'tracking'].forEach(k => saveState(k));
+
+            applyThemeCopywritingAndTracking(); 
+            renderProducts(); 
+            renderTestimonials(); 
+            renderStories(); 
+            setupSocialProof();
+            
+            const msg = document.getElementById('save-msg'); 
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 3000);
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
