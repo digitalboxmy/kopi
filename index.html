@@ -1,880 +1,372 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  ShoppingCart, CheckCircle, ShieldCheck, Truck, Leaf, Star, X, Plus, Minus, QrCode, 
-  LayoutDashboard, Package, DollarSign, Menu, Lock, Settings, Save, Upload, 
-  Image as ImageIcon, Activity 
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopi Songkok Al-Ambiak Original Direct Kilang | Kopi Tenaga Lelaki Tongkat Ali, Guarana & Maca (20 Sachet)</title>
+<meta name="description" content="Kopi Songkok Al-Ambiak ORIGINAL direct kilang — kopi herba 3-dalam-1 Tongkat Ali + Guarana + Maca yang digemari ramai lelaki Malaysia untuk tenaga harian. Trial pack 5 sachet, 1 box 20 sachet harga borong, pos rahsia seluruh Malaysia. Bayaran mudah QR DuitNow.">
+<meta name="keywords" content="kopi songkok al-ambiak original, kopi panggung al-ambiak direct kilang, kopi songkok 20 sachet harga, kopi tenaga lelaki tongkat ali guarana maca, kopi songkok hijau pek baru 20g, cara minum kopi songkok yang betul, kopi panggung original bukan tiruan, kopi herba lelaki malaysia, kopi songkok trial pack 5 sachet, borong kopi songkok al-ambiak">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kopisongkok-original.example.my/">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Kopi Songkok Al-Ambiak Original — Direct Kilang, Bukan Tiruan">
+<meta property="og:description" content="Kopi herba 3-dalam-1 (Tongkat Ali + Guarana + Maca). Trial pack RM39.90. 1 box 20 sachet + FREE madu. Pos rahsia seluruh Malaysia.">
+<meta property="og:image" content="assets/img/kopi-panggung-al-ambiak-box-original.webp">
+<meta name="theme-color" content="#14532d">
+<link rel="preload" as="image" href="assets/img/kopi-songkok-al-ambiak-25g-sachet.webp">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"Kopi Songkok Al-Ambiak Original","image":["assets/img/kopi-songkok-al-ambiak-25g-sachet.webp"],"description":"Kopi Songkok Al-Ambiak original direct kilang — kopi herba pracampur Tongkat Ali, Guarana & Maca (20 sachet sekotak). Digemari ramai untuk gaya hidup bertenaga.","brand":{"@type":"Brand","name":"Kopi Songkok Al-Ambiak"},"sku":"KSA-20","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.5","reviewCount":"127"},"offers":{"@type":"AggregateOffer","priceCurrency":"MYR","lowPrice":"39.90","highPrice":"159.00","offerCount":"3","availability":"https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Berapa harga kopi songkok al-ambiak original 1 box (20 sachet)?","acceptedAnswer":{"@type":"Answer","text":"Harga promosi 1 box 20 sachet ialah RM89 (biasa RM140) dan kami beri FREE 2 sachet madu asli. Trial pack 5 sachet RM39.90 dan combo 2 box RM159 dengan FREE postage Semenanjung."}},
+{"@type":"Question","name":"Apa cara minum kopi songkok yang betul untuk kesan maksimum?","acceptedAnswer":{"@type":"Answer","text":"Bancuh 1/3 hingga 1/2 sachet dengan air panas atau suam 150ml selepas makan. Satu sachet boleh digunakan untuk 2–3 bancuhan. Minum air kosong yang banyak dan elakkan air kelapa serta limau ketika hidangan."}},
+{"@type":"Question","name":"Macam mana nak bezakan kopi panggung al-ambiak original dengan tiruan?","acceptedAnswer":{"@type":"Answer","text":"Pek original mempunyai cetakan tajam, hologram pengeluar, serbuk berwarna pekat dan rasa pahit herba yang khas. Kami membekalkan stok direct kilang dengan jaminan duit dikembalikan jika terbukti tiruan."}},
+{"@type":"Question","name":"Adakah kopi songkok sesuai untuk wanita atau yang belum berkahwin?","acceptedAnswer":{"@type":"Answer","text":"Ramai yang meminumnya sebagai kopi herba untuk gaya hidup bertenaga, mengatasi keletihan dan kecergasan harian. Ia tidak sesuai untuk wanita mengandung, kanak-kanak, pesakit jantung dan penghidap darah tinggi kritikal."}},
+{"@type":"Question","name":"Berapa lama postage ambil masa sampai?","acceptedAnswer":{"@type":"Answer","text":"Pos setiap hari bekerja menggunakan kurier (J&T/Skynet). Semenanjung lazimnya 1–3 hari bekerja, Sabah & Sarawak 3–5 hari. Semua bungkusan dibalut rapi dan rahsia."}},
+{"@type":"Question","name":"Bagaimana cara bayaran? Ada QR DuitNow?","acceptedAnswer":{"@type":"Answer","text":"Ya. Selepas isi borang order, anda akan terus dipaparkan QR bayaran DuitNow/QR bank. Imbas, bayar, dan hantar resit melalui WhatsApp untuk pengesahan serta tracking pos."}}
+]}
+</script>
+</head>
+<body>
 
-const INITIAL_PRODUCTS = [
-  {
-    id: 'p1',
-    name: 'TRIAL PACK - 5 BUNGKUS',
-    description: 'Risau membazir beli tak minum boleh beli pack percubaan dulu, dah rasa serasi baru standby beli 1 Kotak.',
-    price: 35.00,
-    originalPrice: 50.00,
-    image: 'image.png',
-    tag: 'Sale!',
-    stock: 50
-  },
-  {
-    id: 'p2',
-    name: '1 KOTAK - 20 BUNGKUS',
-    description: 'Pilihan paling jimat dan berbaloi untuk amalan harian. 100% Original Direct Kilang.',
-    price: 120.00,
-    originalPrice: 150.00,
-    image: 'image_6.png',
-    tag: 'Best Value',
-    stock: 100
-  }
-];
+<!-- ═══ PROMO BAR + COUNTDOWN ═══ -->
+<div class="promobar">🔥 PROMOSI DIRECT KILANG — diskaun sehingga <b>43%</b> + FREE madu. Berakhir dalam <span class="cd" id="cd">00:00:00</span></div>
 
-const TRUST_BADGES = [
-  { icon: Truck, title: 'Free Shipping', desc: '2 Kotak Keatas' },
-  { icon: Package, title: 'Fast Shipping', desc: 'Bayar Sebelum 12pm' },
-  { icon: Leaf, title: 'Bahan Organik', desc: '100% Guarantee' },
-  { icon: ShieldCheck, title: 'Original Produk', desc: '100% Dari Kilang' }
-];
+<!-- ═══ NAV ═══ -->
+<header class="nav"><div class="wrap nav-in">
+  <a class="logo" href="#top"><span class="bean">☕</span><span>Kopi Songkok<br><small style="font-weight:600;color:var(--mut);font-size:.66rem">Al-Ambiak™ • Original HQ</small></span></a>
+  <nav class="navlinks" aria-label="menu">
+    <a href="#story" style="color:var(--ink)">Kisah Kami</a>
+    <a href="#khasiat" style="color:var(--ink)">Khasiat</a>
+    <a href="#testimoni" style="color:var(--ink)">Testimoni</a>
+    <a href="#harga" style="color:var(--ink)">Harga</a>
+    <a href="blog.html" style="color:var(--ink)">Blog</a>
+    <a href="#faq" style="color:var(--ink)">FAQ</a>
+  </nav>
+  <span class="ocn" id="onlineChip"><span class="dot"></span><span id="onlineCount">27</span>&nbsp;orang sedang melihat</span>
+</div></header>
 
-const SOCIAL_PROOF_NAMES = ['Mohd Haikal', 'Zakiah Adnan', 'Ahmad Albab', 'Siti Nurhaliza', 'Faizal Tahir', 'Syafiq R.'];
-const TIME_AGO = ['1 hour ago', '2 hours ago', '5 hours ago', 'Just now', '10 minutes ago'];
+<main id="top">
+<!-- ═══ A — ATTENTION (HOOK) ═══ -->
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">⚠ Kopi Herba Paling Dicari Lelaki Malaysia 2010–2026</span>
+    <h1>Kopi Pahit <span class="hl">Kopi Songkok Al-Ambiak</span> Yang Buat Ramai Lelaki Repeat Order Setiap Bulan…</h1>
+    <p class="lead"><b>Bukan kopi biasa.</b> Kopi Songkok Al-Ambiak™ original ialah kopi herba pracampur <b>3-dalam-1 — Tongkat Ali, Guarana &amp; Maca</b> — digemari ramai untuk gaya hidup bertenaga, dari pekerja kilang sampai ke pengusaha. <b>1 sachet 20g boleh untuk 2–3 bancuhan</b> — jimat, padat, dan pos terus ke depan pintu secara <b>rahsia</b>.</p>
+    <div style="margin:16px 0">
+      <div class="tick"><i>✔</i><span><b>Original direct kilang</b> — bukan tiruan pasaran (jaminan duit dikembalikan)</span></div>
+      <div class="tick"><i>✔</i><span><b>Rating 4.3–4.6★</b> di marketplace, ribuan sachet terjual</span></div>
+      <div class="tick"><i>✔</i><span><b>Pos setiap hari bekerja</b> (J&amp;T/Skynet) — tracking disediakan</span></div>
+      <div class="tick"><i>✔</i><span><b>Bayaran mudah</b> — imbas QR DuitNow/Bank terus masa order</span></div>
+    </div>
+    <div class="cta-row">
+      <a href="#harga" class="btn btn-gold btn-lg pulse">🛒 ORDER SEKARANG — DARI RM39.90</a>
+      <button class="btn btn-wa js-wa">💬 Semak Stok WhatsApp</button>
+    </div>
+    <p class="mini-note">🔒 Bungkusan pos <b>100% rahsia</b> — tiada nama produk di luar parcel. Sesuai untuk yang malu beli di kedai.</p>
+    <div class="stars" aria-label="rating">★★★★★ <small class="mut" style="letter-spacing:0;font-size:.85rem">4.5/5 — dari 127+ ulasan pelanggan</small></div>
+  </div>
+  <div class="hero-img">
+    <img class="main" src="assets/img/kopi-songkok-al-ambiak-25g-sachet.webp" alt="Kopi Songkok Al-Ambiak original 25g pek hijau — kopi panggung natural herbs coffee Tongkat Ali Guarana Maca" fetchpriority="high">
+    <div class="floaty f1">🌿 Tongkat Ali + Guarana + Maca</div>
+    <div class="floaty f2">🔥 1 sachet = 2–3 bancuhan</div>
+  </div>
+</div></section>
 
-function AdBanner({ slot = "1234567890", format = "auto", clientId = "ca-pub-0000000000000000" }) {
-  useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("AdSense error", e);
-    }
-  }, []);
-  
-  return (
-    <div className="w-full my-8 bg-gray-100 border-2 border-dashed border-gray-300 p-4 text-center rounded-xl relative overflow-hidden">
-      <p className="text-xs text-gray-400 absolute top-2 left-0 w-full text-center">Advertisement (Google AdSense)</p>
-      <div className="pt-6 min-h-[100px] flex items-center justify-center">
-        <ins className="adsbygoogle block w-full"
-             data-ad-client={clientId}
-             data-ad-slot={slot}
-             data-ad-format={format}
-             data-full-width-responsive="true"></ins>
+<!-- ═══ TRUST STRIP ═══ -->
+<section class="trust" style="padding:0"><div class="wrap trust-in">
+  <b><span class="ic">🏭</span>Direct Kilang<br>Original HQ</b>
+  <b><span class="ic">📦</span>Pos Rahsia<br>Seluruh Malaysia</b>
+  <b><span class="ic">💸</span>Bayaran QR<br>DuitNow/Bank</b>
+  <b><span class="ic">🛡️</span>Jaminan Duit<br>Dikembalikan</b>
+</div></section>
+
+<!-- ═══ I — INTEREST: MASALAH ═══ -->
+<section id="masalah"><div class="wrap">
+  <div class="shead rv"><span class="k">Jujur Dengan Diri…</span>
+    <h2>Anda Rasa Macam Ni Ke Akhir-Akhir Ini?</h2>
+    <p>Kalau 2–3 tanda ni kena dengan anda, anda bukan keseorangan — inilah sebab ribuan rakyat Malaysia beralih ke kopi herba.</p>
+  </div>
+  <div class="bgrid">
+    <div class="bcard rv"><div class="ic">😩</div><h3>Cepat letih &amp; lesu</h3><p>Baru pukul 2 petang badan dah rasa kejek. Minum kopi mamak pun tak lepas — sebab kafein biasa je.</p></div>
+    <div class="bcard rv"><div class="ic">🪜</div><h3>Naik tangga pun penat</h3><p>Dulu jogging 5KM steady. Sekarang kerja pejabat saja pun rasa macam habis separuh nyawa.</p></div>
+    <div class="bcard rv"><div class="ic">🏋️</div><h3>Semangat 'gym' hilang</h3><p>Shoes gym berhabuk di depan pintu. Bukan malas — badan memang dah tak cukup "bahan api".</p></div>
+    <div class="bcard rv"><div class="ic">😔</div><h3>Keyakinan diri menurun</h3><p>Bila badan tak bermaya, semua benda terasa berat — kerja, keluarga, marah tangga pun terjejas.</p></div>
+  </div>
+  <p class="center rv" style="margin-top:26px;font-size:1.1rem"><b>Punca utamanya?</b> Usia + tekanan + kurang rehat = badan perlukan bantuan <i>herba sebenar</i> — bukan setakat gula &amp; kafein.</p>
+</div></section>
+
+<!-- ═══ STORYTELLING ═══ -->
+<section id="story" class="story"><div class="wrap">
+  <div class="shead rv"><span class="k">Kisah Di Sebalik Secawan Kopi</span>
+    <h2>Dari Warung Kecil di Kedah, Ke Rumah Ribuan Lelaki Seluruh Malaysia</h2>
+  </div>
+  <div class="story-card rv">
+    <img src="assets/img/kopi-panggung-al-ambiak-box-original.webp" alt="Kopi Panggung Al-Ambiak original quality box dan sachet — kopi songkok direct kilang Kedah" loading="lazy">
+    <div class="drop">
+      <p>Sekitar <b>tahun 2010</b>, di sebuah kampung di Kedah, seorang peniaga warung mula membancuh sendiri kopi campuran herba untuk pelanggan tetapnya — kebanyakannya petani, nelayan dan peneroka yang bangun sebelum subuh.</p>
+      <p style="margin-top:12px">Ramuan itu bukan rahsia pasaraya: <b>Tongkat Ali</b> yang sudah beratus tahun diagungkan nenek moyang, digandingkan dengan <b>Guarana</b> dan <b>Maca</b> — herba yang digunakan suku asli Amerika Selatan untuk stamina. Hasilnya? Secawan kopi pekat berwarna gelap, <b>pahit, pedas herba</b>… dan berkesan.</p>
+      <p style="margin-top:12px">Dari mulut ke mulut, "kopi songkok" — dinamakan sempena wajah bersongkok pada bungkusannya — mula dijual dari kedai ke kedai, ke marketplace, dan kini dihantar sehingga ke UK dan US.</p>
+      <blockquote class="q">"Kami bukan jual kopi. Kami jual rasa <b>bangkit semula</b> — bila badan dah lama rasa separuh nyawa." — Team Kopi Songkok Official</blockquote>
+      <p>Hari ini, kami membekalkan stok <b>terus dari kilang (HQ)</b> — supaya anda dapat yang <b>original</b>, pada harga yang tak perlu masuk 3 lapis orang tengah.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ═══ RAMUAN 3-IN-1 ═══ -->
+<section id="ramuan" style="background:var(--bg2)"><div class="wrap">
+  <div class="shead rv"><span class="k">Bukan Kopi Biasa</span>
+    <h2>Kuasa 3 Herba Dalam 1 Sachet 20g Kopi Songkok Hijau Pek Baru</h2>
+    <p>Setiap sachet adalah adunan buatan Malaysia — kopi segera premium + 3 herba legenda. Inilah bezanya dengan kopi mamak.</p>
+  </div>
+  <div class="ing">
+    <div class="ingc bg1 rv"><span class="big">🌿</span><h3>TONGKAT ALI</h3><p>Herba kebanggaan hutan Malaysia. Secara tradisinya sinonim dengan tenaga, stamina &amp; kecergasan lelaki.</p></div>
+    <div class="ingc bg2 rv"><span class="big">🍒</span><h3>GUARANA</h3><p>Benih dari Amazon — sumber semula jadi yang digemari atlet untuk kekal cergas dan fokus lebih lama.</p></div>
+    <div class="ingc bg3 rv"><span class="big">🥔</span><h3>MACA ROOT</h3><p>Akar pergunungan Andes yang digunakan berabad-abad untuk sokong gaya hidup aktif dan bertenaga.</p></div>
+  </div>
+  <div class="tblwrap rv" style="margin-top:26px">
+    <table class="cmp" aria-label="perbandingan kopi songkok original vs tiruan">
+      <thead><tr><th>Perkara</th><th>⭐ Original Direct Kilang (Kami)</th><th>⚠️ Tiruan / 2nd Grade</th></tr></thead>
+      <tbody>
+        <tr><td>Sumber bekalan</td><td class="yes">✔ HQ/kilang sah, batch terkawal</td><td class="no">✘ Pihak ke-3 tak dikenali</td></tr>
+        <tr><td>Rasa &amp; warna serbuk</td><td class="yes">✔ Pekat, pahit herba khas</td><td class="no">✘ Cair, rasa pelik/manis berlebihan</td></tr>
+        <tr><td>1 sachet untuk 2–3 bancuhan</td><td class="yes">✔ Ya — padat</td><td class="no">✘ Sekali bancuh habis, tak berkesan</td></tr>
+        <tr><td>Jaminan duit dikembalikan</td><td class="yes">✔ 100% jika terbukti tiruan</td><td class="no">✘ Tiada jaminan</td></tr>
+        <tr><td>Bungkusan pos rahsia</td><td class="yes">✔ Ya</td><td class="no">✘ Kadang-kadang saja</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<!-- ═══ D — DESIRE: KHASIAT/KELEBIHAN ═══ -->
+<section id="khasiat"><div class="wrap">
+  <div class="shead rv"><span class="k">Kenapa Ramai Setia Dengannya</span>
+    <h2>Khasiat &amp; Kelebihan Yang Dilaporkan Ramai Pengguna*</h2>
+    <p>Dari ulasan pembeli di marketplace dan perkongsian pengguna sejak 2010:</p>
+  </div>
+  <div class="bgrid">
+    <div class="bcard rv"><div class="ic">⚡</div><h3>Tenaga &amp; stamina harian</h3><p>Ramai laporkan badan lebih bertenaga walau tidur tak cukup — sesuai shift kerja panjang.</p></div>
+    <div class="bcard rv"><div class="ic">🔥</div><h3>Sokong gaya hidup aktif</h3><p>"Kick" herba 3-dalam-1 digemari sebelum aktiviti berat — kandang, site, atau bersenam.</p></div>
+    <div class="bcard rv"><div class="ic">🧍</div><h3>Badan terasa ringan</h3><p>Pengguna setia kongsi lenguh-lenguh badan berkurangan selepas minum rutin.</p></div>
+    <div class="bcard rv"><div class="ic">🍯</div><h3>Rasa pekat memuaskan</h3><p>Pahit herba kopi kampung sebenar. Tambah madu atau susu ikut citarasa anda.</p></div>
+    <div class="bcard rv"><div class="ic">💰</div><h3>Sangat jimat</h3><p>1 sachet 20g = 2–3 bancuhan. Satu box boleh bertahan lebih 1 bulan.</p></div>
+    <div class="bcard rv"><div class="ic">🕶️</div><h3>Nampak macam kopi biasa</h3><p>Sachet kecil, mudah bawa ke mana-mana — bancuh je bila-bila masa.</p></div>
+  </div>
+  <p class="center mut rv" style="font-size:.8rem;margin-top:14px">*Keputusan individu mungkin berbeza. Produk makanan/minuman, bukan ubat. Baca disclaimer di bawah.</p>
+</div></section>
+
+<!-- ═══ CARA MINUM (SEO longtail) ═══ -->
+<section id="cara" style="background:var(--bg2)"><div class="wrap">
+  <div class="shead rv"><span class="k">Tips HQ</span>
+    <h2>Cara Minum Kopi Songkok Yang Betul Untuk Kesan Maksimum</h2>
+    <p>Ramai tak tahu — cara bancuh yang betul boleh buat kopi ini lebih berkesan. Panduan rasmi:</p>
+  </div>
+  <div class="how">
+    <div class="step rv"><h3>Bancuh 1/3–1/2 sachet</h3><p class="mut">Tuang ke dalam cawan. Pengguna baru mesti mula dengan sukatan kecil untuk badan sesuaikan diri.</p></div>
+    <div class="step rv"><h3>Tambah air panas 150ml</h3><p class="mut">Kacau sebati. Boleh tambah susu, gula atau madu jika tak tahan pahit. Secubit garam — lebih 'kick' kata peminat setia!</p></div>
+    <div class="step rv"><h3>Minum selepas makan</h3><p class="mut">Elakkan perut kosong. Jangka rasa hangat badan — itu tanda herba mula bekerja.</p></div>
+    <div class="step rv"><h3>Banyakkan air kosong</h3><p class="mut">Minum air kosong 2–3 liter sehari. Ulang 2–3 bancuhan seminggu. 1 sachet = 2–3 bancuhan.</p></div>
+  </div>
+  <div class="warn rv" style="margin-top:18px">⚠️ <b>Pantang larang penting:</b> Tidak sesuai untuk wanita mengandung &amp; menyusu, kanak-kanak, pesakit jantung dan darah tinggi kritikal. Elakkan minum bersama air kelapa &amp; limau (tawar khasiat) dan ketika badan tengah demam/panas. Jika anda ada keadaan kesihatan atau sedang ambil ubat, rujuk doktor dahulu.</div>
+</div></section>
+
+<!-- ═══ ADSENSE SLOT ═══ -->
+<div class="wrap"><div class="adslot" aria-hidden="true"></div></div>
+
+<!-- ═══ TESTIMONI ═══ -->
+<section id="testimoni"><div class="wrap">
+  <div class="shead rv"><span class="k">Bukti, Bukan Janji</span>
+    <h2>Apa Kata Pelanggan Yang Dah Cuba Kopi Songkok Al-Ambiak Original</h2>
+    <div class="dib"><span class="pill">⭐ 4.5/5 purata rating • 📦 ribuan sachet dihantar • 🔁 ramai repeat buyer</span></div>
+  </div>
+  <div class="tscroll" id="testiWall" aria-label="testimoni pelanggan"></div>
+</div></section>
+
+<!-- ═══ PRICING ═══ -->
+<section id="harga" class="price-zone"><div class="wrap">
+  <div class="shead rv"><span class="k" style="color:#ffd76a">Harga Direct Kilang — Potong Si Peraih</span>
+    <h2>Pilih Pakej Kopi Songkok Al-Ambiak Anda (20 Sachet / Trial / Combo)</h2>
+    <p>Harga promosi berakhir bila timer di atas tamat. Stok kilang terhad setiap minggu.</p>
+  </div>
+  <div class="pk" id="priceGrid"></div>
+
+  <!-- ═══ ORDER FORM ═══ -->
+  <form class="order rv" id="order" onsubmit="return false">
+    <h3>🧾 Borang Order Pantas (60 Saat)</h3>
+    <p class="center mut" style="font-size:.88rem">Isi maklumat → bayar guna QR → hantar resit WhatsApp → pos esok hari bekerja. Semudah itu.</p>
+    <div class="field"><label for="fName">Nama Penuh *</label><input id="fName" type="text" placeholder="Cth: Ahmad bin Ali" autocomplete="name"></div>
+    <div class="two">
+      <div class="field"><label for="fPhone">No. WhatsApp *</label><input id="fPhone" type="tel" placeholder="Cth: 0123456789" inputmode="tel" autocomplete="tel"></div>
+      <div class="field"><label for="state">Negeri *</label>
+        <select id="state">
+          <option>Selangor</option><option>Kuala Lumpur</option><option>Johor</option><option>Kedah</option><option>Pulau Pinang</option><option>Perak</option><option>Kelantan</option><option>Terengganu</option><option>Pahang</option><option>Negeri Sembilan</option><option>Melaka</option><option>Perlis</option><option>Sabah</option><option>Sarawak</option><option>Labuan</option><option>Putrajaya</option>
+        </select>
       </div>
     </div>
-  );
-}
-
-export default function App() {
-  const [currentView, setCurrentView] = useState('shop');
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-  const [successModal, setSuccessModal] = useState(false);
-  
-  const [products, setProducts] = useState(INITIAL_PRODUCTS);
-  
-  // Menggabungkan tetapan kedai (WhatsApp, QR, Postage SM/SS)
-  const [storeSettings, setStoreSettings] = useState({
-    whatsapp: "60123456789",
-    feeSM: 8.00,
-    feeSS: 15.00,
-    freeThreshold: 150.00,
-    qrCodeUrl: "",
-    adsenseClientId: "ca-pub-0000000000000000",
-    bankName: "Maybank - KopiViral",
-    accNumber: "162204123456"
-  });
-  
-  const [cart, setCart] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [popupData, setPopupData] = useState(null);
-  
-  const [orders, setOrders] = useState([
-    { id: 'ORD-001', customer: 'Ali Bin Abu', phone: '0123456789', address: 'Kajang', region: 'SM', total: 120, status: 'Paid', trackingNo: '', receipt: null, date: '2023-10-25' }
-  ]);
-
-  useEffect(() => {
-    const handleContextMenu = (e) => e.preventDefault();
-    const handleKeyDown = (e) => {
-      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
-        e.preventDefault(); return false;
-      }
-    };
-    document.addEventListener('contextmenu', handleContextMenu);
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.title = "Kopi Songkok Al Ambiak Original Direct Kilang | Tenaga Maksima";
-    window.fbq = window.fbq || function() { console.log('FB Pixel:', arguments); };
-    window.gtag = window.gtag || function() { console.log('GA4 Event:', arguments); };
-    window.fbq('track', 'PageView');
-    window.gtag('event', 'page_view');
-  }, []);
-
-  const addToCart = (product) => {
-    if (product.stock <= 0) return;
-    
-    // Pixel Event: AddToCart
-    if(window.fbq) window.fbq('track', 'AddToCart', { content_name: product.name, value: product.price, currency: 'MYR' });
-    
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        if (existing.qty >= product.stock) return prev;
-        return prev.map(item => item.id === product.id ? { ...item, qty: item.qty + 1 } : item);
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
-    setIsCartOpen(true);
-  };
-
-  const updateQty = (id, delta) => {
-    setCart(prev => prev.map(item => {
-      if (item.id === id) {
-        const productRef = products.find(p => p.id === id);
-        const newQty = Math.max(1, Math.min(item.qty + delta, productRef?.stock || 99));
-        return { ...item, qty: newQty };
-      }
-      return item;
-    }));
-  };
-
-  const removeFromCart = (id) => setCart(prev => prev.filter(item => item.id !== id));
-  
-  const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
-
-  useEffect(() => {
-    if (currentView !== 'shop') return;
-    const showRandomPopup = () => {
-      const randomName = SOCIAL_PROOF_NAMES[Math.floor(Math.random() * SOCIAL_PROOF_NAMES.length)];
-      const randomProduct = products[Math.floor(Math.random() * products.length)].name;
-      const randomTime = TIME_AGO[Math.floor(Math.random() * TIME_AGO.length)];
-      setPopupData({ name: randomName, product: randomProduct, time: randomTime });
-      setTimeout(() => setPopupData(null), 5000);
-    };
-    const initialTimer = setTimeout(showRandomPopup, 3000);
-    const intervalTimer = setInterval(showRandomPopup, 15000);
-    return () => { clearTimeout(initialTimer); clearInterval(intervalTimer); };
-  }, [currentView, products]);
-
-  const handleCheckoutComplete = (orderData) => {
-    const { name, phone, address, region, paymentMethod, grandTotal, receiptBase64 } = orderData;
-    
-    const newOrderId = `ORD-${Math.floor(Math.random() * 10000)}`;
-    const newOrder = {
-      id: newOrderId,
-      customer: name || 'Guest User',
-      phone: phone, address: address, region: region, total: grandTotal,
-      status: receiptBase64 ? 'Paid' : 'Pending Verification',
-      trackingNo: '', receipt: receiptBase64,
-      date: new Date().toISOString().split('T')[0]
-    };
-
-    setProducts(prevProducts => prevProducts.map(p => {
-      const cartItem = cart.find(c => c.id === p.id);
-      return cartItem ? { ...p, stock: Math.max(0, p.stock - cartItem.qty) } : p;
-    }));
-
-    // Pixel Event: Purchase (Advanced Matching Simulation)
-    if(window.fbq) window.fbq('track', 'Purchase', { value: grandTotal, currency: 'MYR' }, { fn: name, ph: phone });
-
-    // Format WhatsApp Message
-    const sellerPhone = storeSettings.whatsapp; 
-    let itemsList = cart.map(item => `- ${item.qty}x ${item.name} (RM ${(item.price * item.qty).toFixed(2)})`).join('\n');
-    let resitStatus = receiptBase64 ? '\n*Resit Bayaran:* Ya (Dalam sistem)' : '\n*Resit Bayaran:* Sila lampirkan resit di sini';
-    
-    const waText = `*ORDER BARU DARI WEBSITE (${newOrderId})*\n\n*Maklumat Pelanggan:*\nNama: ${name}\nNo Tel: ${phone}\nKawasan: ${region === 'SM' ? 'Semenanjung' : 'Sabah/Sarawak'}\nAlamat: ${address}\n\n*Senarai Pesanan:*\n${itemsList}\n\n*Jumlah Perlu Dibayar:* RM ${grandTotal.toFixed(2)}\n*Cara Bayaran:* QR Code / Online Transfer${resitStatus}\n\nMohon semak bos. Terima kasih!`;
-    const waUrl = `https://wa.me/${sellerPhone}?text=${encodeURIComponent(waText)}`;
-    
-    window.open(waUrl, '_blank');
-    setOrders([newOrder, ...orders]);
-    setCart([]);
-    setCurrentView('shop');
-    setSuccessModal(true);
-  };
-
-  return (
-    <div className="min-h-screen bg-neutral-50 font-sans text-neutral-800 selection:bg-green-200 selection:text-green-900">
-      <Navbar cartCount={cartCount} openCart={() => setIsCartOpen(true)} setView={setCurrentView} currentView={currentView} />
-
-      {currentView === 'shop' && (
-        <ShopView addToCart={addToCart} popupData={popupData} products={products} adsenseClientId={storeSettings.adsenseClientId} />
-      )}
-
-      {currentView === 'checkout' && (
-        <CheckoutView cart={cart} cartTotal={cartTotal} goBack={() => setCurrentView('shop')} completeOrder={handleCheckoutComplete} storeSettings={storeSettings} />
-      )}
-
-      {currentView === 'admin' && (
-        <AdminView orders={orders} isAuthenticated={isAdminAuthenticated} setAuth={setIsAdminAuthenticated} products={products} setProducts={setProducts} storeSettings={storeSettings} setStoreSettings={setStoreSettings} />
-      )}
-
-      <CartSidebar isOpen={isCartOpen} close={() => setIsCartOpen(false)} cart={cart} updateQty={updateQty} removeFromCart={removeFromCart} total={cartTotal} proceedToCheckout={() => { setIsCartOpen(false); setCurrentView('checkout'); }} />
-
-      {/* Modal Berjaya Checkout */}
-      {successModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black bg-opacity-50 px-4 backdrop-blur-sm">
-          <div className="bg-white p-8 rounded-2xl text-center max-w-sm w-full mx-auto shadow-2xl animate-[scaleIn_0.3s_ease-out]">
-            <div className="text-green-500 mb-4 flex justify-center"><CheckCircle className="w-16 h-16" /></div>
-            <h2 className="text-2xl font-bold mb-2">Terima Kasih!</h2>
-            <p className="text-gray-600 mb-6">Pesanan anda berjaya direkodkan. Sila semak WhatsApp anda untuk pengesahan.</p>
-            <button type="button" onClick={() => setSuccessModal(false)} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold w-full transition-colors shadow-lg">Tutup</button>
-          </div>
-        </div>
-      )}
+    <div class="field"><label for="fAddr">Alamat Pos Penuh *</label><textarea id="fAddr" rows="2" placeholder="No rumah, jalan, taman, poskod... (Pakej dibungkus rahsia)"></textarea></div>
+    <div class="field"><label>Pilih Pakej *</label><div class="pack-sel" id="packSel"></div></div>
+    <div class="field" style="max-width:160px"><label for="qty">Kuantiti</label><input id="qty" type="number" min="1" max="10" value="1" inputmode="numeric"></div>
+    <div>
+      <div class="totrow"><span>Harga pakej</span><span id="tSub">RM 0.00</span></div>
+      <div class="totrow"><span>Postage</span><span id="tPos">RM 0.00</span></div>
+      <div class="totrow grand"><span>JUMLAH</span><span id="tTot">RM 0.00</span></div>
     </div>
-  );
-}
+    <button class="btn btn-red btn-lg pulse" id="btnOrder" style="margin-top:14px">🔒 TERUSKAN KE BAYARAN QR →</button>
+    <p class="mini-note center" style="margin-top:10px">🔐 Maklumat anda selamat &amp; tidak dikongsi. Dengan order anda bersetuju dengan terma &amp; disclaimer kesihatan kami.</p>
+  </form>
+</div></section>
 
-function Navbar({ cartCount, openCart, setView, currentView }) {
-  const [mobileMenu, setMobileMenu] = useState(false);
+<!-- ═══ GUARANTEE ═══ -->
+<section><div class="wrap">
+  <div class="shead rv"><span class="k">Zero Risiko Untuk Anda</span>
+    <h2>Jaminan "Tak Original, Duit Kami Pulangkan"</h2>
+    <p>Terlalu banyak kopi songkok tiruan / 2nd grade di pasaran. Jadi kami mudahkan keputusan anda:</p>
+  </div>
+  <div class="bgrid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="bcard rv"><div class="ic">🛡️</div><h3>Jaminan 100% Original</h3><p>Stok direct kilang. Jika terbukti tiruan — kami pulangkan duit penuh tanpa banyak soal.</p></div>
+    <div class="bcard rv"><div class="ic">🚚</div><h3>Pos pantas &amp; rahsia</h3><p>Setiap hari bekerja. Bungkusan neutral — penerima pos pun tak tahu apa isi dalamnya.</p></div>
+    <div class="bcard rv"><div class="ic">💬</div><h3>Support WhatsApp manusia</h3><p>Soalan tentang cara bancuh, tracking, atau order borong — kami balas pantas.</p></div>
+  </div>
+  <div class="adslot rv" aria-hidden="true"></div>
+</div></section>
 
-  return (
-    <nav className="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center cursor-pointer" onClick={() => setView('shop')}>
-            <Leaf className="h-8 w-8 text-green-600 mr-2" />
-            <span className="font-bold text-xl tracking-tight text-green-800">Kopi Al-Ambiak</span>
-          </div>
-          <div className="hidden md:flex space-x-8 items-center">
-            <button type="button" onClick={() => setView('shop')} className={`font-medium transition-colors ${currentView === 'shop' ? 'text-green-600' : 'text-gray-600 hover:text-green-600'}`}>Kedai</button>
-            <button type="button" onClick={() => setView('admin')} className={`font-medium transition-colors ${currentView === 'admin' ? 'text-green-600' : 'text-gray-600 hover:text-green-600'}`}>Admin Panel</button>
-            <button type="button" onClick={openCart} className="relative p-2 text-gray-600 hover:text-green-600 transition-colors">
-              <ShoppingCart className="h-6 w-6" />
-              {cartCount > 0 && <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-500 rounded-full shadow-sm">{cartCount}</span>}
-            </button>
-          </div>
-          <div className="flex md:hidden items-center space-x-4">
-            <button type="button" onClick={openCart} className="relative p-2 text-gray-600 hover:text-green-600">
-              <ShoppingCart className="h-6 w-6" />
-              {cartCount > 0 && <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-500 rounded-full">{cartCount}</span>}
-            </button>
-            <button type="button" onClick={() => setMobileMenu(!mobileMenu)} className="text-gray-600 hover:text-green-600">
-              <Menu className="h-6 w-6" />
-            </button>
-          </div>
-        </div>
+<!-- ═══ BLOG TEASER (SEO content hub) ═══ -->
+<section id="blog" style="background:var(--bg)"><div class="wrap">
+  <div class="shead rv"><span class="k">📚 Ilmu Percuma Dari HQ</span>
+    <h2>Baca Dulu — Ramai Baru Faham Kopi Ni Lepas Baca Blog Kami</h2>
+    <p>Panduan jujur bertulis tentang kopi songkok: cara minum, anti-tipu, herba &amp; soalan biasa.</p>
+  </div>
+  <div class="postgrid">
+    <article class="postcard rv">
+      <a href="blog/cara-minum-kopi-songkok-yang-betul.html"><img src="assets/img/kopi-panggung-al-ambiak-box-original.webp" alt="cara minum kopi songkok yang betul panduan HQ" loading="lazy"></a>
+      <div class="pb"><div class="chips"><span class="chip">Paling Dibaca 🔥</span></div>
+        <h3>Cara Minum Kopi Songkok Yang Betul Untuk Kesan Maksimum</h3>
+        <p>9 dari 10 kes "tak berkesan" sebab cara bancuh salah. Ini panduan rasminya.</p>
+        <span style="color:var(--brand2);font-weight:800;font-size:.85rem">Baca →</span>
       </div>
-      {mobileMenu && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-2 shadow-lg">
-          <button type="button" onClick={() => { setView('shop'); setMobileMenu(false); }} className="block w-full text-left py-3 px-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">Kedai</button>
-          <button type="button" onClick={() => { setView('admin'); setMobileMenu(false); }} className="block w-full text-left py-3 px-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">Dashboard Admin</button>
-        </div>
-      )}
-    </nav>
-  );
-}
-
-function ShopView({ addToCart, popupData, products, adsenseClientId }) {
-  const scrollToProducts = () => {
-    const el = document.getElementById('products');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <div className="relative overflow-hidden bg-[#07140e]">
-      
-      {/* Promo Bar dari Fail Kopi Songkot */}
-      <div className="bg-gradient-to-r from-red-600 to-red-800 text-white text-center py-2.5 px-4 text-xs sm:text-sm font-bold uppercase tracking-widest shadow-md z-10 relative animate-pulse">
-        🔥 PROMOSI LELONGAN HQ: 50 KOTAK TERAKHIR SAHAJA HARI INI!
+    </article>
+    <article class="postcard rv">
+      <a href="blog/kopi-songkok-original-vs-tiruan.html"><img src="assets/img/kopi-songkok-al-ambiak-25g-sachet.webp" alt="kopi songkok original vs tiruan cara kenal" loading="lazy"></a>
+      <div class="pb"><div class="chips"><span class="chip">Anti-Tipu</span></div>
+        <h3>Kopi Songkok Original vs Tiruan: 7 Cara Mengenalpasti</h3>
+        <p>Jangan beli sebelum tahu 7 tanda ini — pasaran penuh 2nd grade.</p>
+        <span style="color:var(--brand2);font-weight:800;font-size:.85rem">Baca →</span>
       </div>
-
-      {/* Premium Dark Hero Section */}
-      <div className="bg-[#07140e] py-16 px-4 sm:px-6 lg:px-8 text-center relative border-b border-[#112e20]">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <span className="inline-block py-1.5 px-5 rounded-full bg-[#e5c158]/10 text-[#e5c158] border border-[#e5c158]/50 font-bold text-xs sm:text-sm mb-6 uppercase tracking-wider shadow-[0_0_15px_rgba(229,193,88,0.2)]">
-            ⭐ STOK 100% ORIGINAL HQ (KOTAK HIJAU)
-          </span>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight uppercase drop-shadow-lg">
-            Kopi Panggung <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f1c40f] to-[#e5c158]">Al-Ambiak</span>
-          </h1>
-          
-          <p className="max-w-2xl mx-auto text-lg text-gray-300 mb-10 font-medium leading-relaxed">
-            Formulasi Ekstrak Herba Semulajadi Gred Premium Untuk Tenaga, Stamina Dan Kecergasan Maksimum Lelaki Sejati.
-          </p>
-
-          <div className="bg-[#112e20] border-2 border-[#e5c158]/30 rounded-2xl p-3 md:p-5 mb-10 max-w-2xl mx-auto shadow-[0_20px_40px_rgba(0,0,0,0.6)] relative overflow-hidden group">
-             <div className="absolute inset-0 bg-gradient-to-tr from-[#e5c158]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-             <img src="image_6.png" alt="Kopi Songkok Original" className="w-full h-auto rounded-xl shadow-lg object-cover pointer-events-none select-none" />
-          </div>
-
-          <div className="bg-gradient-to-br from-[#0d2218] to-[#123324] border-l-4 border-[#e5c158] p-6 md:p-8 rounded-r-xl max-w-2xl mx-auto text-left shadow-2xl mb-12 transform hover:scale-[1.02] transition-transform duration-300">
-            <h3 className="text-xl md:text-2xl font-extrabold text-white mb-3">Rasa 'Kaw' Pekat, Penangan Padu!</h3>
-            <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-              Gabungan mantap Tongkat Ali, Guarana, dan Maca yang membantu memulihkan kesegaran tubuh badan seawal satu sachet. Dapatkan kembali ego dan keyakinan kelakian anda hari ini.
-            </p>
-          </div>
-          
-          <button type="button" onClick={scrollToProducts} className="w-full sm:w-auto bg-gradient-to-b from-[#2ecc71] to-[#25d366] hover:from-[#27ae60] hover:to-[#128C7E] text-white px-10 py-5 rounded-xl font-extrabold shadow-[0_10px_20px_rgba(37,211,102,0.3)] transition-all transform hover:-translate-y-1 text-lg tracking-wide uppercase border border-green-400">
-            LIHAT PAKEJ HARGA SEKARANG
-          </button>
-        </div>
+    </article>
+    <article class="postcard rv">
+      <a href="blog/rahsia-3-herba-tongkat-ali-guarana-maca.html"><img src="assets/img/kopi-panggung-al-ambiak-premium.webp" alt="rahsia 3 herba tongkat ali guarana maca kopi songkok" loading="lazy"></a>
+      <div class="pb"><div class="chips"><span class="chip">Herba</span></div>
+        <h3>Tongkat Ali, Guarana &amp; Maca: Rahsia 3 Herba Dalam Kopi Songkok</h3>
+        <p>Dari hutan Malaysia ke Andes — kenapa gabungannya meletop sejak 2010.</p>
+        <span style="color:var(--brand2);font-weight:800;font-size:.85rem">Baca →</span>
       </div>
+    </article>
+  </div>
+  <p class="center rv" style="margin-top:20px"><a href="blog.html" class="btn btn-o">📚 Lihat Semua Artikel Blog</a></p>
+</div></section>
 
-      {/* Pain Points & Benefits Section (Dari Fail Kopi Songkot) */}
-      <div className="bg-[#0a1a12] py-16 px-4 sm:px-6 lg:px-8 border-b-4 border-[#e5c158]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-center text-white mb-10 uppercase tracking-wide">
-            Selalu Alami Masalah <span className="text-[#e5c158]">Ini?</span>
-          </h2>
-          
-          <div className="space-y-4 mb-16">
-            {['Badan lemau, lesu & tak bermaya lepas balik kerja', 'Mengantuk tersengguk-sengguk masa memandu jarak jauh', 'Sakit-sakit urat dan lenguh sendi satu badan', 'Isteri mula merungut prestasi di ranjang merudum'].map((pain, i) => (
-              <div key={i} className="bg-[#180a0a] border border-[#3a1515] p-5 rounded-xl flex items-center shadow-md transform transition-all hover:translate-x-2">
-                <span className="text-2xl mr-4 shrink-0">❌</span>
-                <span className="text-[#ff9f9f] font-semibold text-base md:text-lg leading-snug">{pain}</span>
-              </div>
-            ))}
-          </div>
+<!-- ═══ FAQ (longtail SEO) ═══ -->
+<section id="faq" style="background:var(--bg2)"><div class="wrap">
+  <div class="shead rv"><span class="k">Soalan Lazim</span><h2>FAQ Kopi Songkok Al-Ambiak Original</h2></div>
+  <div class="faq">
+    <details open><summary>Berapa harga kopi songkok al-ambiak original 1 box (20 sachet)?</summary><div class="ans">Promosi sekarang <b>RM89</b> (biasa RM140) + FREE 2 sachet madu. Trial pack 5 sachet <b>RM39.90</b>, combo 2 box <b>RM159</b> FREE postage Semenanjung. Harga direct kilang — tiada orang tengah.</div></details>
+    <details><summary>Apa cara minum kopi songkok yang betul untuk kesan maksimum?</summary><div class="ans">Bancuh <b>1/3–1/2 sachet</b> dengan air panas 150ml <b>selepas makan</b>, 2–3 kali seminggu. Minum air kosong banyak. Elak air kelapa &amp; limau ketika hidangan. Pengguna baharu mesti mula sukatan kecil.</div></details>
+    <details><summary>Macam mana nak bezakan kopi panggung al-ambiak original dengan tiruan?</summary><div class="ans">Original: cetakan kemas, serbuk pekat, rasa pahit herba khas, 1 sachet boleh 2–3 bancuhan. Tiruan biasanya cair dan "tak naik". Kami beri <b>jaminan duit dikembalikan</b> jika terbukti bukan original.</div></details>
+    <details><summary>Adakah kopi songkok sesuai untuk wanita / yang belum berkahwin?</summary><div class="ans">Ramai minum sebagai kopi herba untuk tenaga &amp; kecergasan harian. Namun ia <b>tidak sesuai</b> untuk wanita mengandung/menyusu, kanak-kanak, pesakit jantung &amp; darah tinggi kritikal.</div></details>
+    <details><summary>Boleh beli borong / jadi stokis kopi songkok al-ambiak?</summary><div class="ans">Boleh! Harga borong bermula 10 box ke atas. Klik butang WhatsApp dan sebut "<b>BORONG</b>" — kami bagi senarai harga stokis terus.</div></details>
+    <details><summary>Berapa lama postage sampai &amp; cara bayaran?</summary><div class="ans">Pos harian (J&amp;T/Skynet): Semenanjung 1–3 hari, Sabah/Sarawak 3–5 hari. Bayaran melalui <b>QR DuitNow/Bank</b> semasa order — imbas, bayar, hantar resit WhatsApp. Tracking diberikan.</div></details>
+  </div>
+</div></section>
 
-          <div className="bg-[#0d2218] border border-[#e5c158]/20 p-6 md:p-10 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-             <h2 className="text-2xl md:text-3xl font-extrabold text-center text-white mb-10 uppercase tracking-wide">
-              Kenapa Anda <span className="text-[#e5c158]">Wajib Cuba?</span>
-             </h2>
-             <div className="space-y-8">
-                {[
-                  { title: 'Tenaga Ekstra Serta-Merta', desc: 'Membantu membekalkan stamina berpanjangan supaya kerja harian dan aktiviti malam tak terganggu.' },
-                  { title: 'Melancarkan Aliran Darah', desc: 'Herba semulajadi bertindak membantu menyegarkan otot dan membuang angin badan.' },
-                  { title: 'Rasa Kopi Kampung Sebenar', desc: 'Tidak terlalu manis, aroma panggang asli yang membangkitkan selera penggemar kopi tegar.' }
-                ].map((benefit, i) => (
-                  <div key={i} className="flex gap-5 items-start">
-                    <div className="bg-[#e5c158]/10 text-[#e5c158] w-14 h-14 rounded-full flex items-center justify-center font-black text-2xl shrink-0 border-2 border-[#e5c158]/40 shadow-[0_0_15px_rgba(229,193,88,0.2)]">
-                      {i+1}
-                    </div>
-                    <div className="pt-1">
-                      <h4 className="text-xl font-bold text-white mb-2">{benefit.title}</h4>
-                      <p className="text-gray-400 text-sm md:text-base leading-relaxed">{benefit.desc}</p>
-                    </div>
-                  </div>
-                ))}
-             </div>
-          </div>
-        </div>
-      </div>
+<!-- ═══ FINAL CTA ═══ -->
+<section class="price-zone" style="text-align:center"><div class="wrap">
+  <h2 class="rv">Setiap Hari Anda Bertangguh,<br>Stok Promosi Makin Susut. ⏳</h2>
+  <p class="rv" style="color:#bfe0c8;max-width:52ch;margin:12px auto 22px">Bayangkan minggu depan anda bangun pagi dengan tenaga macam dulu. Semuanya bermula dengan secawan kopi — dan satu klik di bawah.</p>
+  <div class="cta-row rv" style="justify-content:center;max-width:620px;margin:0 auto">
+    <a href="#order" class="btn btn-gold btn-lg pulse">🛒 YA, SAYA NAK ORDER SEKARANG</a>
+  </div>
+  <p class="mini-note rv" style="color:#9fc4a6;margin-top:12px">🔒 Selamat • 📦 Pos rahsia • 💯 Jaminan original</p>
+</div></section>
+</main>
 
-      {/* Trust Badges */}
-      <div className="bg-neutral-900 text-white py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {TRUST_BADGES.map((badge, idx) => {
-            const IconComponent = badge.icon;
-            return (
-              <div key={idx} className="flex flex-col items-center p-4 bg-neutral-800 rounded-xl hover:bg-neutral-700 transition-colors">
-                <IconComponent className="h-10 w-10 text-green-400 mb-3" />
-                <h3 className="font-bold text-sm md:text-base">{badge.title}</h3>
-                <p className="text-neutral-400 text-xs md:text-sm mt-1">{badge.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+<!-- ═══ FOOTER ═══ -->
+<footer><div class="wrap">
+  <div class="cols">
+    <div><h4>☕ Kopi Songkok Al-Ambiak™ Official</h4>
+      <p>Pembekal original direct kilang sejak 2010. Menghantar ke seluruh Malaysia setiap hari bekerja dengan bungkusan rahsia dan jaminan duit dikembalikan.</p>
+      <p style="margin-top:10px">📱 WhatsApp: <a href="#" class="js-wa">Klik untuk chat</a></p></div>
+    <div><h4>Pautan Pantas</h4><p><a href="#khasiat">Khasiat</a><br><a href="#cara">Cara Minum</a><br><a href="#testimoni">Testimoni</a><br><a href="#harga">Harga &amp; Order</a><br><a href="blog.html">Blog &amp; Panduan</a><br><a href="admin.html" rel="nofollow">Admin Login</a></p></div>
+    <div><h4>Carian Popular (SEO)</h4><p class="mut" style="font-size:.85rem;line-height:1.9">kopi songkok al-ambiak original • kopi panggung direct kilang • kopi songkok 20 sachet • kopi tenaga lelaki tongkat ali • cara minum kopi songkok • kopi panggung original bukan tiruan • kopi songkok trial pack • borong kopi songkok malaysia</p></div>
+  </div>
+  <div class="disc"><b>DISCLAIMER KESIHATAN:</b> Produk ini ialah produk makanan/minuman berasaskan herba dan BUKAN ubat. Ia tidak bertujuan untuk mendiagnosis, merawat, menyembuh atau mencegah sebarang penyakit. Kenyataan di laman ini berasaskan perkongsian pengguna dan belum dinilai oleh Kementerian Kesihatan Malaysia (KKM). Keputusan setiap individu mungkin berbeza-beza. Produk ini TIDAK SESUAI untuk wanita mengandung/menyusu, kanak-kanak di bawah 18 tahun, pesakit jantung dan penghidap darah tinggi kritikal. Jika anda mempunyai keadaan kesihatan atau sedang mengambil ubat-ubatan, sila dapatkan nasihat doktor sebelum penggunaan. Henti penggunaan jika berlaku kesan tidak selesa. © 2026 Kopi Songkok Al-Ambiak™ Official. Hak cipta terpelihara.</div>
+</div></footer>
 
-      {}
-      <div id="products" className="py-20 bg-neutral-50 border-t border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-green-600 font-bold uppercase tracking-wider text-sm">Penyelesaian Anda</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900 mt-2 mb-4">Pilih Pakej Kopi Songkok Anda</h2>
-            <p className="text-neutral-600 max-w-2xl mx-auto">Beli terus secara online dengan selamat. Stok direct kilang.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-            {products.map(product => (
-              <div key={product.id} className="bg-white rounded-3xl shadow-xl overflow-hidden border border-neutral-100 flex flex-col group hover:shadow-2xl transition-all duration-300">
-                <div className="relative overflow-hidden bg-neutral-100 aspect-[4/3] flex items-center justify-center p-6">
-                  <div className="absolute top-4 right-4 bg-red-500 text-white text-sm font-bold px-4 py-1.5 rounded-full z-10 shadow-md animate-pulse">
-                    {product.tag}
-                  </div>
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700 ease-in-out pointer-events-none select-none"/>
-                </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-extrabold text-neutral-900 mb-2 leading-tight">{product.name}</h3>
-                  <div className="flex items-center mb-4">
-                    <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
-                    </div>
-                    <span className="ml-2 text-sm text-gray-500 font-medium">Terjual 1,000+</span>
-                  </div>
-                  
-                  <div className="mb-4">
-                    {product.stock > 10 ? (
-                      <span className="text-xs font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full border border-green-200">Stok Tersedia: {product.stock}</span>
-                    ) : product.stock > 0 ? (
-                      <span className="text-xs font-bold text-red-600 bg-red-100 px-3 py-1 rounded-full border border-red-200 animate-pulse">🔥 Stok Hampir Habis: Tinggal {product.stock}!</span>
-                    ) : (
-                      <span className="text-xs font-bold text-white bg-red-600 px-3 py-1 rounded-full shadow-md">Habis Dijual (Sold Out)</span>
-                    )}
-                  </div>
+<!-- ═══ FLOATING UI ═══ -->
+<div class="stickycta">
+  <div class="sc-price"><b id="scPrice">RM 89.00</b><br><s>RM 140.00</s></div>
+  <a href="#order" class="btn btn-red pulse">🛒 ORDER — PROMOSI HARI INI</a>
+  <button class="btn btn-wa js-wa" style="flex:0.6">💬 WhatsApp</button>
+</div>
+<button class="wafab js-wa" aria-label="WhatsApp kami"><svg viewBox="0 0 32 32"><path d="M16 3C9.9 3 5 7.9 5 14c0 2.4.8 4.6 2.1 6.4L5 29l8.8-2.3c1.2.3 2.4.5 3.7.5 6.1 0 11-4.9 11-11S22.1 3 16 3zm6.4 15.6c-.3.8-1.6 1.5-2.3 1.6-.6.1-1.3.1-2.1-.1-.5-.2-1.1-.4-1.9-.7-3.4-1.5-5.6-4.9-5.8-5.1-.2-.2-1.4-1.8-1.4-3.5s.9-2.5 1.2-2.8c.3-.3.7-.4.9-.4h.7c.2 0 .5-.1.8.6.3.7 1 2.4 1.1 2.6.1.2.1.4 0 .6-.3 1-1.2 1.3-.9 1.9 1 1.7 2.1 2.8 3.7 3.6.4.2.6.2.8-.1.2-.2.9-1 1.1-1.4.2-.3.4-.3.7-.2.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.2.1.7-.2 1.6z"/></svg></button>
+<div class="toast" id="spToast" role="status" aria-live="polite"></div>
 
-                  <p className="text-neutral-600 text-base mb-8 flex-grow leading-relaxed">{product.description}</p>
-                  
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                    <div>
-                      <span className="block text-gray-400 line-through text-sm mb-1">Harga Biasa: RM {product.originalPrice.toFixed(2)}</span>
-                      <span className="text-3xl font-extrabold text-green-600">RM {product.price.toFixed(2)}</span>
-                    </div>
-                    <button 
-                      type="button"
-                      disabled={product.stock <= 0}
-                      onClick={() => addToCart(product)}
-                      className={`p-4 rounded-full transition-all duration-300 shadow-lg ${product.stock > 0 ? 'bg-neutral-900 hover:bg-green-600 text-white focus:ring-4 focus:ring-green-200 transform hover:scale-110' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
-                    >
-                      <Plus className="h-7 w-7" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {}
-      <div className="bg-white py-20 border-y border-neutral-100">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <AdBanner slot="5647382910" clientId={adsenseClientId} />
-          <span className="text-red-500 font-bold uppercase tracking-wider text-sm mb-2 block">Penting! Elak Ditipu</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-neutral-900">Cara Kenal Kopi Songkok Original & Tiruan</h2>
-          <p className="mb-10 text-neutral-600 max-w-2xl mx-auto text-lg">Ramai yang tertipu dengan produk fake di pasaran luar. Pastikan anda beli terus dari direct kilang.</p>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-green-500">
-              <h3 className="text-2xl font-bold text-green-600 mb-6 flex items-center justify-center"><CheckCircle className="mr-2"/> Original (Sachet Hijau)</h3>
-              <div className="bg-green-50 rounded-2xl flex items-center justify-center mb-6 overflow-hidden border border-green-200">
-                 <img src="image_2.png" className="w-full h-auto object-cover pointer-events-none select-none" alt="Sachet Hijau Original" />
-              </div>
-              <ul className="text-left space-y-4 text-neutral-700 font-medium">
-                <li className="flex items-start"><CheckCircle className="h-6 w-6 text-green-500 mr-3 shrink-0"/> <span>Sachet warna HIJAU TERANG.</span></li>
-                <li className="flex items-start"><CheckCircle className="h-6 w-6 text-green-500 mr-3 shrink-0"/> <span>Serbuk kopi warna gelap & padat herba.</span></li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-red-500">
-              <h3 className="text-2xl font-bold text-red-600 mb-6 flex items-center justify-center"><X className="mr-2"/> Tiruan (Sachet Silver)</h3>
-              <div className="bg-red-50 rounded-2xl flex items-center justify-center mb-6 overflow-hidden border border-red-200">
-                  <img src="image_3.png" className="w-full h-auto object-cover pointer-events-none select-none" alt="Serbuk Tiruan" />
-              </div>
-              <ul className="text-left space-y-4 text-neutral-700 font-medium">
-                <li className="flex items-start"><X className="h-6 w-6 text-red-500 mr-3 shrink-0"/> <span>Sachet warna SILVER PUCAT.</span></li>
-                <li className="flex items-start"><X className="h-6 w-6 text-red-500 mr-3 shrink-0"/> <span>Serbuk kopi pucat & kurang herba sebenar.</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {}
-      <div id="testimoni" className="py-20 bg-neutral-50 max-w-6xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-neutral-900">Ribuan Suami Telah Berjaya!</h2>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-           <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-lg relative col-span-1 md:col-span-2 row-span-2">
-             <img src="image_4.png" alt="Testimoni WhatsApp" className="w-full rounded-xl object-contain h-full max-h-[400px] mx-auto pointer-events-none select-none" />
-             <p className="text-center font-bold text-gray-700 mt-4">Bukti Pembelian Sebenar Pelanggan Kami ✓</p>
-           </div>
-           
-           <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-lg relative">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold mr-4 text-xl">S</div>
-                <div>
-                  <h4 className="font-bold text-gray-900">Syafiq R.</h4>
-                  <p className="text-xs text-green-600 font-medium flex items-center"><CheckCircle className="w-3 h-3 mr-1"/> Verified Buyer</p>
-                </div>
-              </div>
-              <div className="text-gray-700 font-medium italic">"Barang dah sampai bos, laju betul. Saya order semalam, harini dah sampai. Memang original kilang punya 👍"</div>
-           </div>
-
-           <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-lg relative">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold mr-4 text-xl">A</div>
-                <div>
-                  <h4 className="font-bold text-gray-900">Azman T.</h4>
-                  <p className="text-xs text-green-600 font-medium flex items-center"><CheckCircle className="w-3 h-3 mr-1"/> Verified Buyer</p>
-                </div>
-              </div>
-              <div className="text-gray-700 font-medium italic">"Terbaik bos! Isteri senyum simpul pagi ni. Rasa macam muda 10 tahun balik."</div>
-           </div>
-        </div>
-      </div>
-      
-      {/* Footer & Popups */}
-      <div className="bg-neutral-900 pt-16 pb-8 px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Tunggu Apa Lagi Bos?</h2>
-        <button type="button" onClick={scrollToProducts} className="bg-green-500 hover:bg-green-400 text-neutral-900 px-10 py-5 rounded-full font-black text-xl shadow-xl transition-all transform hover:scale-105 mb-16 animate-pulse">
-          TEMPAH SEKARANG
-        </button>
-        
-        <div className="border-t border-neutral-800 pt-8 mt-12 text-left max-w-7xl mx-auto">
-          <p className="text-neutral-600 text-xs leading-relaxed">
-            <strong>Kata Kunci Carian Pintar (SEO):</strong> Kopi Songkok Al Ambiak Original Direct Kilang, Kopi Panggung Al Ambiak, Cara kenal kopi songkok original dan tiruan, Ubat kuat tenaga batin lelaki, Kopi tahan lama untuk lelaki.
-          </p>
-          <p className="text-neutral-700 text-xs mt-4">© 2026 Pengedar Sah Kopi Songkok Al Ambiak. Hak Cipta Terpelihara.</p>
-        </div>
-      </div>
-
-      {popupData && (
-        <div className="fixed bottom-4 left-4 z-50 bg-yellow-400 text-neutral-900 px-6 py-4 rounded-2xl shadow-2xl flex items-center max-w-sm border-2 border-yellow-500 transition-all duration-500">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-yellow-600 mr-4 shadow-inner shrink-0 text-xl">
-            {popupData.name.charAt(0)}
-          </div>
-          <div>
-            <p className="text-sm font-medium">{popupData.name} telah membeli</p>
-            <p className="text-sm font-black uppercase underline mt-0.5 text-yellow-900">{popupData.product}</p>
-            <p className="text-xs text-yellow-800 mt-1 font-bold">{popupData.time}</p>
-          </div>
-        </div>
-      )}
+<!-- ═══ MODAL: QR PAYMENT ═══ -->
+<div class="modal" id="qrModal" role="dialog" aria-modal="true" aria-label="Bayaran QR">
+  <div class="mbox">
+    <button class="mx" data-close>✕</button>
+    <div class="mhead"><h3>📲 Imbas &amp; Bayar</h3><p>Jumlah perlu dibayar: <b id="qrTotal" style="font-size:1.3rem;color:#ffe28a">RM 0.00</b></p></div>
+    <div class="mbody">
+      <div class="qrbox" id="qrWrap"></div>
+      <p id="payNote" class="mut center" style="font-size:.86rem"></p>
+      <button class="btn btn-p btn-lg" id="btnPaid" style="width:100%">✅ Saya Dah Bayar — Teruskan</button>
+      <p class="mini-note center">Selepas sah bayar, sistem akan sediakan mesej WhatsApp untuk anda hantar resit.</p>
     </div>
-  );
-}
+  </div>
+</div>
 
-function CartSidebar({ isOpen, close, cart, updateQty, removeFromCart, total, proceedToCheckout }) {
-  return (
-    <>
-      {isOpen && <div className="fixed inset-0 bg-black/60 z-50 transition-opacity backdrop-blur-sm" onClick={close} />}
-      <div className={`fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="p-6 flex items-center justify-between border-b border-gray-100 bg-white">
-          <h2 className="text-2xl font-bold flex items-center text-neutral-900"><ShoppingCart className="mr-3 text-green-600" /> Troli Anda</h2>
-          <button type="button" onClick={close} className="p-2 hover:bg-red-50 hover:text-red-600 rounded-full transition-colors"><X className="h-6 w-6 text-gray-500" /></button>
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-6 bg-neutral-50">
-          {cart.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-4">
-              <div className="bg-gray-100 p-6 rounded-full"><ShoppingCart className="h-16 w-16 text-gray-300" /></div>
-              <p className="text-lg font-medium text-gray-500">Troli anda masih kosong.</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {cart.map(item => (
-                <div key={item.id} className="flex gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                  <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-xl border border-gray-50 pointer-events-none" />
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-bold text-gray-900 text-sm">{item.name}</h3>
-                      <p className="text-green-600 font-extrabold mt-1">RM {item.price.toFixed(2)}</p>
-                    </div>
-                    <div className="flex items-center justify-between mt-2">
-                      <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-gray-50">
-                        <button type="button" onClick={() => updateQty(item.id, -1)} className="px-3 py-1.5 hover:bg-gray-200 text-gray-700"><Minus size={14} strokeWidth={3}/></button>
-                        <span className="px-3 text-sm font-bold w-10 text-center bg-white border-x border-gray-200 py-1">{item.qty}</span>
-                        <button type="button" onClick={() => updateQty(item.id, 1)} className="px-3 py-1.5 hover:bg-gray-200 text-gray-700"><Plus size={14} strokeWidth={3}/></button>
-                      </div>
-                      <button type="button" onClick={() => removeFromCart(item.id)} className="text-red-500 text-sm hover:underline font-bold">Buang</button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {cart.length > 0 && (
-          <div className="p-6 border-t border-gray-100 bg-white">
-            <div className="flex justify-between items-center mb-4 text-lg">
-              <span className="font-medium text-gray-600">Jumlah Kasar</span>
-              <span className="text-3xl font-black text-green-600">RM {total.toFixed(2)}</span>
-            </div>
-            <button type="button" onClick={proceedToCheckout} className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg flex justify-center items-center">
-              Checkout Sekarang <ShoppingCart className="ml-3 h-5 w-5"/>
-            </button>
-          </div>
-        )}
-      </div>
-    </>
-  );
-}
-
-function CheckoutView({ cart, cartTotal, goBack, completeOrder, storeSettings }) {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [region, setRegion] = useState('SM');
-  const [receiptPreview, setReceiptPreview] = useState(null);
-  const [formError, setFormError] = useState('');
-
-  // Dinamik calculation berdasarkan tetapan admin
-  const activePostage = region === 'SM' ? storeSettings.feeSM : storeSettings.feeSS;
-  const shippingFee = cartTotal >= storeSettings.freeThreshold ? 0 : activePostage;
-  const grandTotal = cartTotal + shippingFee;
-
-  const handleReceiptUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setReceiptPreview(reader.result);
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name || !phone || !address) return;
-    if (!receiptPreview) {
-      setFormError('Sila muat naik resit/bukti pembayaran terlebih dahulu sebelum sahkan pesanan.');
-      return;
-    }
-    setFormError('');
-    completeOrder({ name, phone, address, region, paymentMethod: 'qr', grandTotal, receiptBase64: receiptPreview });
-  };
-
-  return (
-    <div className="max-w-6xl mx-auto px-4 py-8 md:py-12 flex flex-col lg:flex-row gap-8">
-      <div className="flex-1">
-        <button type="button" onClick={goBack} className="text-gray-500 hover:text-green-600 mb-6 flex items-center font-medium bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm w-fit">
-          ← Kembali ke Kedai
-        </button>
-        
-        <div className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 mb-8">
-          <h2 className="text-2xl font-bold mb-6 flex items-center"><Package className="mr-3 text-green-600"/> Maklumat Penghantaran</h2>
-          <form id="checkoutForm" onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Nama Penuh</label>
-              <input type="text" required value={name} onChange={e => setName(e.target.value)} className="w-full border-gray-300 rounded-xl shadow-sm p-3 border focus:ring-green-500 focus:border-green-500" placeholder="Ali Bin Abu" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">No. Telefon</label>
-              <input type="tel" required value={phone} onChange={e => setPhone(e.target.value)} className="w-full border-gray-300 rounded-xl shadow-sm p-3 border focus:ring-green-500 focus:border-green-500" placeholder="0123456789" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Kawasan Penghantaran</label>
-              <select value={region} onChange={e => setRegion(e.target.value)} className="w-full border-gray-300 rounded-xl shadow-sm p-3 border focus:ring-green-500 focus:border-green-500 bg-white">
-                <option value="SM">Semenanjung Malaysia (RM {storeSettings.feeSM})</option>
-                <option value="SS">Sabah / Sarawak (RM {storeSettings.feeSS})</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Alamat Penuh</label>
-              <textarea required value={address} onChange={e => setAddress(e.target.value)} rows="3" className="w-full border-gray-300 rounded-xl shadow-sm p-3 border focus:ring-green-500 focus:border-green-500" placeholder="No Rumah, Jalan, Taman, Poskod, Negeri"></textarea>
-            </div>
-          </form>
-        </div>
-
-        <div className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100">
-           <h2 className="text-2xl font-bold mb-6 flex items-center"><DollarSign className="mr-3 text-green-600"/> Cara Pembayaran</h2>
-           <label className="flex items-center p-4 border-2 border-green-500 bg-green-50 rounded-xl cursor-pointer">
-             <input type="radio" checked readOnly className="mr-4 text-green-600 w-5 h-5" />
-             <div className="flex-1">
-               <span className="font-bold text-gray-800 flex items-center text-lg">QR Code / Online Banking <QrCode className="ml-2 h-6 w-6 text-gray-500"/></span>
-             </div>
-           </label>
-        </div>
-      </div>
-
-      <div className="lg:w-[400px]">
-        <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100 sticky top-24">
-          <h2 className="text-xl font-bold mb-6 pb-4 border-b border-gray-100">Ringkasan Pesanan</h2>
-          
-          <div className="space-y-4 mb-6 max-h-64 overflow-y-auto pr-2">
-            {cart.map(item => (
-              <div key={item.id} className="flex justify-between text-sm bg-gray-50 p-3 rounded-lg border border-gray-100">
-                <span className="text-gray-700 font-medium pr-4">{item.qty}x {item.name}</span>
-                <span className="font-bold text-gray-900">RM {(item.price * item.qty).toFixed(2)}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-gray-100 pt-4 space-y-3 mb-6">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Subtotal</span><span className="font-bold text-gray-700">RM {cartTotal.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Penghantaran</span><span className="font-bold text-green-600">{shippingFee === 0 ? 'Percuma' : `RM ${shippingFee.toFixed(2)}`}</span>
-            </div>
-            <div className="flex justify-between text-xl font-black pt-4 border-t border-gray-100 mt-4">
-              <span>Jumlah Keseluruhan</span><span className="text-green-600">RM {grandTotal.toFixed(2)}</span>
-            </div>
-          </div>
-
-          {formError && <div className="mb-4 bg-red-50 text-red-600 font-bold p-3 rounded-xl border border-red-200 text-sm text-center">{formError}</div>}
-
-          <div className="mb-6 p-5 bg-gray-50 rounded-2xl text-center border-2 border-gray-200 border-dashed">
-            <p className="text-sm font-bold text-gray-700 mb-3">Imbas kod untuk bayar <br/><span className="text-lg text-green-600">RM {grandTotal.toFixed(2)}</span></p>
-            <div className="bg-white p-3 rounded-xl flex flex-col items-center shadow-sm border border-gray-100">
-              {storeSettings.qrCodeUrl ? (
-                <img src={storeSettings.qrCodeUrl} alt="QR Code Custom" className="w-40 h-40 object-contain rounded" />
-              ) : (
-                <img src="https://placehold.co/200x200/ffffff/000000?text=Sila+Upload+QR" alt="QR Code DuitNow" className="w-40 h-40 mx-auto" />
-              )}
-            </div>
-            <p className="text-xs text-gray-500 mt-2 mb-2">Atau transfer ke: <br/><strong>{storeSettings.bankName} ({storeSettings.accNumber})</strong></p>
-            
-            <div className="mt-4 border-t border-gray-200 pt-4 text-left">
-              <label className="block text-sm font-bold text-gray-800 mb-2 text-center">Sila Upload Resit (Wajib) <span className="text-red-500">*</span></label>
-              <label className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer bg-white hover:bg-gray-50 overflow-hidden ${receiptPreview ? 'border-green-500' : 'border-red-300'}`}>
-                <div className="flex flex-col items-center justify-center w-full h-full">
-                  {receiptPreview ? (
-                    <img src={receiptPreview} alt="Preview" className="h-24 object-contain rounded-md" />
-                  ) : (
-                    <><Upload className="w-8 h-8 mb-2 text-gray-400" /><p className="text-sm text-gray-500 font-medium">Klik untuk upload</p></>
-                  )}
-                </div>
-                <input type="file" className="hidden" accept="image/*" onChange={handleReceiptUpload} />
-              </label>
-            </div>
-          </div>
-          
-          <button form="checkoutForm" type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 rounded-xl shadow-lg mt-2 flex items-center justify-center animate-pulse border-2 border-green-800">
-            Hantar Ke WhatsApp <ShoppingCart className="ml-2 w-5 h-5"/>
-          </button>
-        </div>
-      </div>
+<!-- ═══ MODAL: ORDER SUCCESS ═══ -->
+<div class="modal" id="okModal" role="dialog" aria-modal="true">
+  <div class="mbox">
+    <div class="mbody center">
+      <div class="okmark">✓</div>
+      <h3 style="font-size:1.4rem">Order Diterima! 🎉</h3>
+      <p class="mut" style="margin:6px 0 16px">No. Order anda: <b id="okId">—</b><br>Langkah terakhir — hantar resit bayaran melalui WhatsApp untuk kami proses pos <b>hari bekerja berikutnya</b>.</p>
+      <a class="btn btn-wa btn-lg" id="okWa" href="#" target="_blank" rel="noopener" style="width:100%">💬 HANTAR RESIT DI WHATSAPP</a>
+      <p class="mini-note" style="margin-top:10px">Simpan nombor order anda untuk rujukan tracking.</p>
+      <button class="btn btn-o" data-close style="width:100%;margin-top:10px">Tutup</button>
     </div>
-  );
-}
+  </div>
+</div>
 
-function AdminView({ orders, isAuthenticated, setAuth, products, setProducts, storeSettings, setStoreSettings }) {
-  const [passwordInput, setPasswordInput] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-  const [activeTab, setActiveTab] = useState('orders');
+<!-- ═══ MODAL: TESTIMONI POPUP ═══ -->
+<div class="modal" id="tModal" role="dialog" aria-modal="true">
+  <div class="mbox">
+    <button class="mx" data-close>✕</button>
+    <div class="mhead"><h3>💬 Testimoni Terkini Pelanggan</h3><p>Apa yang dikatakan mereka yang dah cuba…</p></div>
+    <div class="mbody" id="tpBody"></div>
+    <div class="mbody" style="padding-top:0"><a href="#order" class="btn btn-gold" id="btnTpCta" style="width:100%">🛒 Nak Rasa Sendiri? Order Sini</a></div>
+  </div>
+</div>
 
-  if (!isAuthenticated) {
-    const handleLogin = (e) => {
-      e.preventDefault();
-      // Obfuscated password check untuk "admin123"
-      if (passwordInput === atob('YWRtaW4xMjM=')) { setAuth(true); setErrorMsg(''); } 
-      else { setErrorMsg('Katalaluan salah. Sila cuba lagi bos.'); }
-    };
-
-    return (
-      <div className="min-h-[80vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-3xl shadow-xl text-center">
-          <Lock className="h-16 w-16 text-green-600 mx-auto mb-6 bg-green-100 p-3 rounded-full" />
-          <h2 className="text-2xl font-bold mb-2">Akses Admin Sahaja</h2>
-          <form onSubmit={handleLogin} className="space-y-6 mt-8">
-            <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} placeholder="Password..." className="w-full px-5 py-4 border rounded-xl text-center text-lg focus:ring-green-500 focus:border-green-500" required />
-            {errorMsg && <p className="text-red-500 text-sm font-medium">{errorMsg}</p>}
-            <button type="submit" className="w-full bg-neutral-900 text-white font-bold py-4 rounded-xl shadow-lg">Log Masuk</button>
-          </form>
-        </div>
-      </div>
-    );
-  }
-
-  const handleProductPriceChange = (id, newPrice) => setProducts(products.map(p => p.id === id ? { ...p, price: parseFloat(newPrice) || 0 } : p));
-  const handleProductStockChange = (id, newStock) => setProducts(products.map(p => p.id === id ? { ...p, stock: parseInt(newStock) || 0 } : p));
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-8 relative">
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex items-center bg-white p-3 rounded-2xl shadow-sm"><LayoutDashboard className="h-8 w-8 text-green-600 mr-3" /><h1 className="text-2xl font-bold">Admin Dashboard</h1></div>
-        <button type="button" onClick={() => setAuth(false)} className="bg-red-50 text-red-600 font-bold px-5 py-2.5 rounded-xl border border-red-100 flex items-center">Log Keluar <X className="ml-2 w-4 h-4"/></button>
-      </div>
-
-      <div className="flex space-x-2 mb-8 border-b">
-        <button type="button" onClick={() => setActiveTab('orders')} className={`pb-3 px-4 font-bold text-sm border-b-4 ${activeTab === 'orders' ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500'}`}>Pesanan Masuk</button>
-        <button type="button" onClick={() => setActiveTab('settings')} className={`pb-3 px-4 font-bold text-sm border-b-4 ${activeTab === 'settings' ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500'}`}>Tetapan Kedai</button>
-      </div>
-
-      {activeTab === 'orders' ? (
-        <div className="bg-white rounded-3xl shadow-sm overflow-hidden">
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 m-4 rounded shadow-sm">
-            <h3 className="text-sm font-bold text-red-800">SOP ELAK SCAMMER</h3>
-            <p className="text-xs text-red-700">Wajib semak akaun bank (Maybank/CIMB/dll) untuk pastikan duit masuk dengan tepat. Jangan percaya 100% gambar resit.</p>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left min-w-max">
-              <thead className="bg-gray-50 border-b"><tr><th className="p-5">ID & Tarikh</th><th className="p-5">Pelanggan</th><th className="p-5">Status</th><th className="p-5">Jumlah / Resit</th></tr></thead>
-              <tbody>
-                {orders.map((order, i) => (
-                  <tr key={i} className="border-b hover:bg-gray-50">
-                    <td className="p-5"><div className="font-bold text-green-600">{order.id}</div><div className="text-xs text-gray-500">{order.date}</div></td>
-                    <td className="p-5"><div className="font-bold">{order.customer}</div><div className="text-xs">{order.phone}</div><div className="text-xs text-gray-500 truncate max-w-[200px]" title={order.address}>{order.address} ({order.region})</div></td>
-                    <td className="p-5">
-                      <select defaultValue={order.status} className={`border rounded-xl text-xs font-bold px-3 py-2 w-full mb-2 ${order.status === 'Paid' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-yellow-50 text-yellow-700'}`}>
-                        <option value="Pending Verification">Pending Verification</option><option value="Paid">Paid (Lunas)</option><option value="Shipped">Shipped</option>
-                      </select>
-                      <input type="text" placeholder="Tracking No" defaultValue={order.trackingNo} className="border rounded-xl text-xs px-3 py-2 w-full" />
-                    </td>
-                    <td className="p-5">
-                      <div className="font-black text-lg bg-gray-100 inline-block px-3 py-1 rounded-lg">RM {order.total.toFixed(2)}</div><br/>
-                      {order.receipt ? (
-                        <div className="relative group inline-block mt-2 cursor-pointer bg-green-50 p-2 rounded-xl border border-green-200">
-                          <div className="text-xs font-bold text-green-700 flex items-center"><ImageIcon className="h-4 w-4 mr-1"/> Lihat Resit</div>
-                          <div className="absolute right-0 bottom-full mb-2 hidden group-hover:block z-50 bg-white border p-2 rounded-xl shadow-xl w-64"><img src={order.receipt} alt="Resit" className="w-full rounded-lg" /></div>
-                        </div>
-                      ) : <span className="text-xs text-gray-500 mt-2 block">Tiada Resit</span>}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      ) : (
-        <div className="bg-white rounded-3xl shadow-sm p-6 md:p-8 max-w-4xl">
-          <div className="space-y-8">
-            <div className="bg-gray-50 p-6 rounded-2xl">
-              <h3 className="font-bold mb-4 flex items-center"><Truck className="mr-2"/> Tetapan Postage (RM) & Maklumat Terima Order</h3>
-              <div className="grid md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="text-xs font-bold text-gray-600 block mb-1">Postage Semenanjung</label>
-                  <input type="number" value={storeSettings.feeSM} onChange={(e) => setStoreSettings({...storeSettings, feeSM: parseFloat(e.target.value) || 0})} className="w-full border rounded-xl p-3 font-bold text-lg" />
-                </div>
-                <div>
-                  <label className="text-xs font-bold text-gray-600 block mb-1">Postage Sabah/Sarawak</label>
-                  <input type="number" value={storeSettings.feeSS} onChange={(e) => setStoreSettings({...storeSettings, feeSS: parseFloat(e.target.value) || 0})} className="w-full border rounded-xl p-3 font-bold text-lg" />
-                </div>
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-600 block mb-1">No WhatsApp Terima Order (cth: 60123456789)</label>
-                <input type="text" value={storeSettings.whatsapp} onChange={(e) => setStoreSettings({...storeSettings, whatsapp: e.target.value})} className="w-full border rounded-xl p-3 font-bold text-lg" />
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-2xl">
-              <h3 className="font-bold mb-4 flex items-center"><DollarSign className="mr-2"/> Maklumat Bank & QR Code</h3>
-              <div className="grid md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="text-xs font-bold text-gray-600 block mb-1">Nama Bank / Penerima</label>
-                  <input type="text" value={storeSettings.bankName} onChange={(e) => setStoreSettings({...storeSettings, bankName: e.target.value})} className="w-full border rounded-xl p-3 font-bold" />
-                </div>
-                <div>
-                  <label className="text-xs font-bold text-gray-600 block mb-1">No Akaun</label>
-                  <input type="text" value={storeSettings.accNumber} onChange={(e) => setStoreSettings({...storeSettings, accNumber: e.target.value})} className="w-full border rounded-xl p-3 font-bold" />
-                </div>
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-600 block mb-2">Upload Gambar QR Code DuitNow</label>
-                <input type="file" accept="image/*" onChange={(e) => {
-                  const file = e.target.files[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onloadend = () => setStoreSettings({...storeSettings, qrCodeUrl: reader.result});
-                    reader.readAsDataURL(file);
-                  }
-                }} className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 mb-2" />
-                {storeSettings.qrCodeUrl && <img src={storeSettings.qrCodeUrl} className="h-24 w-24 object-contain border rounded-lg bg-white p-1" alt="QR Preview"/>}
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-2xl">
-              <h3 className="font-bold mb-4 flex items-center"><Package className="mr-2"/> Harga & Stok Produk</h3>
-              <div className="space-y-4">
-                {products.map(product => (
-                  <div key={product.id} className="flex justify-between items-center bg-white p-4 rounded-xl border">
-                    <div className="font-bold w-1/2">{product.name}</div>
-                    <div className="flex space-x-2 w-1/2">
-                      <input type="number" value={product.price} onChange={(e) => handleProductPriceChange(product.id, e.target.value)} className="w-1/2 border rounded-lg p-2 text-center font-bold text-green-700" placeholder="Harga" />
-                      <input type="number" value={product.stock} onChange={(e) => handleProductStockChange(product.id, e.target.value)} className="w-1/2 border rounded-lg p-2 text-center font-bold text-blue-700" placeholder="Stok" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-2xl">
-              <h3 className="font-bold mb-4 flex items-center"><Activity className="mr-2"/> Google AdSense ID</h3>
-              <input type="text" value={storeSettings.adsenseClientId} onChange={(e) => setStoreSettings({...storeSettings, adsenseClientId: e.target.value})} className="w-full border rounded-xl p-4 font-mono text-gray-800" placeholder="ca-pub-xxx" />
-            </div>
-          </div>
-        </div>
-      )}
+<!-- ═══ MODAL: EXIT INTENT ═══ -->
+<div class="modal" id="exModal" role="dialog" aria-modal="true">
+  <div class="mbox">
+    <button class="mx" data-close>✕</button>
+    <div class="mhead" style="background:linear-gradient(135deg,#a01d1d,#6e1010)"><h3>TUNGGU! Jangan Pergi Dulu 🛑</h3><p>Kami ada sesuatu untuk anda…</p></div>
+    <div class="mbody center">
+      <p style="font-size:1.05rem"><b>Sebab anda masih di sini</b>, kami berikan kod potongan tambahan <b>RM5</b> untuk order pertama anda:</p>
+      <p class="copy-code" title="Klik untuk salin" style="cursor:pointer;background:#fff8e6;border:2px dashed var(--gold);border-radius:12px;padding:12px;font-size:1.5rem;font-weight:900;letter-spacing:3px;color:#8a5b00;margin:14px 0" id="exCode">POWER5</p>
+      <p class="mut" style="font-size:.85rem">Klik kod untuk salin → sebutkan semasa order WhatsApp.<br>Kod sah untuk hari ini sahaja. ⏳</p>
+      <a href="#order" class="btn btn-red btn-lg" data-close style="width:100%;margin-top:12px">🛒 GUNA KOD &amp; ORDER SEKARANG</a>
     </div>
-  );
-}
+  </div>
+</div>
+
+<noscript><div style="background:#ffe28a;padding:12px;text-align:center;font-weight:700">Sila aktifkan JavaScript untuk buat pesanan. Atau WhatsApp kami terus.</div></noscript>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

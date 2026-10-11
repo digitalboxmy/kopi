@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Dashboard — Kopi Songkok Store</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body class="ambody">
+
+<!-- LOGIN -->
+<div class="loginwrap" id="loginWrap">
+  <div class="logincard">
+    <div style="font-size:2.4rem">☕⚙️</div>
+    <h1>Admin Dashboard</h1>
+    <p class="mut" style="font-size:.9rem;margin-bottom:18px">Kopi Songkok Al-Ambiak™ Official Store</p>
+    <div class="field"><label for="apass">Kata Laluan Admin</label>
+      <input id="apass" type="password" placeholder="Masukkan kata laluan…" autocomplete="current-password">
+    </div>
+    <button class="abtn" id="btnLogin" style="width:100%;justify-content:center">🔓 Log Masuk</button>
+    <p class="mut" style="font-size:.78rem;margin-top:14px">Laluan lalai: <span class="kbd">admin123</span> — sila tukar di Tetapan selepas login.<br><a href="index.html">← kembali ke kedai</a></p>
+  </div>
+</div>
+
+<!-- APP -->
+<aside class="aside hidden" id="aside">
+  <div class="alogo"><span style="font-size:1.5rem">☕</span><span>Admin KS Store</span></div>
+  <button class="anav on" data-v="dash"><span class="ic">📊</span>Dashboard</button>
+  <button class="anav" data-v="prod"><span class="ic">☕</span>Produk &amp; Harga</button>
+  <button class="anav" data-v="post"><span class="ic">📦</span>Postage</button>
+  <button class="anav" data-v="pay"><span class="ic">💳</span>Bayaran QR</button>
+  <button class="anav" data-v="pop"><span class="ic">🔔</span>Popup &amp; Social Proof</button>
+  <button class="anav" data-v="testi"><span class="ic">💬</span>Testimoni</button>
+  <button class="anav" data-v="order"><span class="ic">🧾</span>Pesanan <span class="badge b-r hidden" id="ordBadge">0</span></button>
+  <button class="anav" data-v="ads"><span class="ic">📣</span>Ads &amp; Tracking</button>
+  <button class="anav" data-v="set"><span class="ic">⚙️</span>Tetapan</button>
+  <div style="flex:1"></div>
+  <a class="anav" href="index.html" target="_blank"><span class="ic">👁️</span>Lihat Kedai</a>
+  <button class="anav" id="btnLogout"><span class="ic">🚪</span>Log Keluar</button>
+</aside>
+
+<main class="amain hidden" id="amain">
+  <div class="abar">
+    <button class="ahamb" id="hamb">☰</button>
+    <h1 id="vtitle">📊 Dashboard</h1>
+    <a class="abtn gy" href="index.html" target="_blank">👁️ Preview Kedai</a>
+  </div>
+  <div id="view"></div>
+  <p class="mut" style="font-size:.78rem;margin-top:8px">💾 Semua perubahan disimpan serta-merta ke storan browser (localStorage) &amp; terus dipaparkan di sales page. Untuk multi-device, migrate ke backend (lihat README di research-ANALISA.md).</p>
+</main>
+
+<div class="toastok" id="aToast">✅ Disimpan!</div>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/admin.js" defer></script>
+</body>
+</html>
